@@ -10,6 +10,10 @@ const init = () => {
   document.body.classList.remove("fadeout");
   // # app height
   appHeight();
+  // # init menu
+  initMenu();
+  // # init cart
+  initCart();
   // # lazy load
   const ll = new LazyLoad({
     threshold: 0,
@@ -84,6 +88,52 @@ document.addEventListener("click", (evt) => {
 
   return false;
 });
+
+// ===== menu/cart/newsletter =====
+const [toggleMenus, menus, toggleCarts, carts, header, basho] = [
+  document.querySelectorAll("[data-menu-toggle]"),
+  document.querySelector("[data-menu]"),
+  document.querySelectorAll("[data-cart-toggle]"),
+  document.querySelector("[data-cart]"),
+  document.querySelector("[data-header]"),
+  document.querySelector("[data-basho]"),
+];
+
+const initMenu = () => {
+  if (!menus || !toggleMenus.length) return;
+  toggleMenus.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const shouldBeActive = !menus.classList.contains("--show");
+
+      menus.classList.toggle("--show", shouldBeActive);
+      header.classList.toggle("--black", shouldBeActive);
+      basho.classList.toggle("--black", shouldBeActive);
+
+      toggle.textContent = shouldBeActive ? "Close" : "Menu";
+      shouldBeActive ? window.lenis.stop() : window.lenis.start();
+    });
+  });
+};
+
+const initCart = () => {
+  if (!carts || !toggleCarts.length) return;
+
+  toggleCarts.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const shouldBeActive = !carts.classList.contains("--show");
+      carts.classList.toggle("--show", shouldBeActive);
+
+      if (menus && menus.classList.contains("--show")) {
+        menus.classList.remove("--show");
+        toggleMenus.forEach((btn) => (btn.textContent = "Menu"));
+        header.classList.remove("--black");
+        basho.classList.remove("--black");
+      }
+
+      shouldBeActive ? window.lenis.stop() : window.lenis.start();
+    });
+  });
+};
 
 // ### ===== DOMCONTENTLOADED ===== ###
 window.addEventListener("load", init);
