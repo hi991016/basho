@@ -65,13 +65,22 @@ const initLoading = async () => {
 
 // ===== scroll change color logo =====
 const handleBashoLogo = () => {
-  const bashoLogo = document.querySelector("[data-basho]");
-  const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+  const [bashoLogo, header, ost] = [
+    document.querySelector("[data-basho]"),
+    document.querySelector("[data-header]"),
+    document.querySelector("[data-offset-top]"),
+  ];
+
+  const scrollPosition = window.scrollY;
+  const hSize = ost.getBoundingClientRect().top + scrollPosition;
+  console.log('hSize', hSize, scrollPosition)
+
   bashoLogo.classList.toggle(
     "--white",
     scrollPosition < 50 &&
       sessionStorage.getItem("opening-displayed") === "true"
   );
+  header.classList.toggle("--white", scrollPosition + 20 <= hSize);
 };
 eventsTrigger.forEach((evt) => {
   window.addEventListener(evt, handleBashoLogo);
