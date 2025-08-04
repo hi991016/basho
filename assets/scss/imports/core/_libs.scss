@@ -1,27 +1,6 @@
 /* Library
 ------------------------------------------------------------*/
 
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-// .lenis.lenis-stopped {
-//   overflow: hidden;
-// }
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
-
 /**
  * Swiper 11.2.6
  * Most modern mobile touch slider and framework with hardware accelerated transitions

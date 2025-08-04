@@ -4,6 +4,14 @@
 const isMobile = window.matchMedia("(max-width: 1024px)");
 const eventsTrigger = ["pageshow", "scroll"];
 
+const detectScroll = (detect) => {
+  if (detect) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.removeProperty("overflow");
+  }
+};
+
 // ===== init =====
 const init = () => {
   // #
@@ -14,30 +22,14 @@ const init = () => {
   initMenu();
   // # init cart
   initCart();
+  // # init newsletter
+  initNewsletter();
   // # lazy load
   const ll = new LazyLoad({
     threshold: 0,
     elements_selector: ".lazy",
   });
 };
-
-// ===== lenis =====
-window.lenis = new Lenis({
-  duration: 1.0,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(1 - t, 2.5)),
-  smooth: true,
-  mouseMultiplier: 1.0,
-  smoothTouch: true,
-  touchMultiplier: 1.5,
-  infinite: false,
-  direction: "vertical",
-  gestureDirection: "vertical",
-});
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
 
 // ===== app height =====
 const appHeight = () => {
@@ -90,11 +82,22 @@ document.addEventListener("click", (evt) => {
 });
 
 // ===== menu/cart/newsletter =====
-const [toggleMenus, menus, toggleCarts, carts, header, basho] = [
+const [
+  toggleMenus,
+  toggleCarts,
+  toggleLetters,
+  menus,
+  carts,
+  letters,
+  header,
+  basho,
+] = [
   document.querySelectorAll("[data-menu-toggle]"),
-  document.querySelector("[data-menu]"),
   document.querySelectorAll("[data-cart-toggle]"),
+  document.querySelectorAll("[data-newsletter-toggle]"),
+  document.querySelector("[data-menu]"),
   document.querySelector("[data-cart]"),
+  document.querySelector("[data-newsletter]"),
   document.querySelector("[data-header]"),
   document.querySelector("[data-basho]"),
 ];
@@ -110,7 +113,7 @@ const initMenu = () => {
       basho.classList.toggle("--black", shouldBeActive);
 
       toggle.textContent = shouldBeActive ? "Close" : "Menu";
-      shouldBeActive ? window.lenis.stop() : window.lenis.start();
+      detectScroll(shouldBeActive);
     });
   });
 };
@@ -130,7 +133,18 @@ const initCart = () => {
         basho.classList.remove("--black");
       }
 
-      shouldBeActive ? window.lenis.stop() : window.lenis.start();
+      detectScroll(shouldBeActive);
+    });
+  });
+};
+
+const initNewsletter = () => {
+  if (!letters || !toggleLetters.length) return;
+
+  toggleLetters.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const shouldBeActive = !letters.classList.contains("--show");
+      letters.classList.toggle("--show", shouldBeActive);
     });
   });
 };

@@ -27,11 +27,9 @@ const initLoading = async () => {
     playerBashoPC.svgatorPlayer.seekTo(3000);
     playerBashoSP.svgatorPlayer.seekTo(3000);
     loading.remove();
-    window.lenis.start();
     fvSwiper.autoplay.start();
   } else {
     // # block scroll events
-    lenis.stop();
     window.addEventListener("wheel", preventScroll, { passive: false });
     window.addEventListener("touchmove", preventScroll, { passive: false });
     window.addEventListener("scroll", preventScroll, { passive: false });
@@ -55,7 +53,6 @@ const initLoading = async () => {
     window.removeEventListener("touchmove", preventScroll);
     window.removeEventListener("scroll", preventScroll);
     window.removeEventListener("keydown", preventScroll);
-    window.lenis.start();
     fvSwiper.autoplay.start();
 
     // # set sessionStorage
