@@ -1,3 +1,9 @@
+// ===== init =====
+const homepage = () => {
+  // # init loading
+  initLoading();
+};
+
 // ===== init loading =====
 const preventScroll = (e) => e.preventDefault();
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -22,6 +28,7 @@ const initLoading = async () => {
     playerBashoSP.svgatorPlayer.seekTo(3000);
     loading.remove();
     window.lenis.start();
+    fvSwiper.autoplay.start();
   } else {
     // # block scroll events
     lenis.stop();
@@ -49,12 +56,12 @@ const initLoading = async () => {
     window.removeEventListener("scroll", preventScroll);
     window.removeEventListener("keydown", preventScroll);
     window.lenis.start();
+    fvSwiper.autoplay.start();
 
     // # set sessionStorage
     sessionStorage.setItem("opening-displayed", !0);
   }
 };
-initLoading();
 
 // ===== scroll change color logo =====
 const handleBashoLogo = () => {
@@ -69,3 +76,29 @@ const handleBashoLogo = () => {
 eventsTrigger.forEach((evt) => {
   window.addEventListener(evt, handleBashoLogo);
 });
+
+// ===== firstview ======
+const fvSwiper = new Swiper("[data-fv-swiper]", {
+  effect: "fade",
+  speed: 1500,
+  allowTouchMove: false,
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    renderBullet: function (index, className) {
+      return '<span class="' + className + '">' + (index + 1) + "</span>";
+    },
+  },
+  on: {
+    init: function () {
+      this.autoplay.stop();
+    },
+  },
+});
+
+// ### ===== DOMCONTENTLOADED ===== ###
+window.addEventListener("DOMContentLoaded", homepage);

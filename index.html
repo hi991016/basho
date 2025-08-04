@@ -46,7 +46,7 @@
 
     <!-- @basho -->
     <div class="c-basho" data-basho>
-        <svg class="pc-only" id="eQ7YifWk5CI1" xmlns="http://www.w3.org/2000/svg"
+        <svg class="pc-only" aria-label="BA_SHO PC" id="eQ7YifWk5CI1" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1370 57.637" shape-rendering="geometricPrecision"
             text-rendering="geometricPrecision" project-id="31ee96e138fa4286a976d7d6c43a0abe"
             export-id="c9459ee46c0b42ae9cf61dc42aca8c73" cached="false">
@@ -77,9 +77,10 @@
                 </g>
             </g>
         </svg>
-        <svg class="sp-only" id="emSFKzg9Pox1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 376 31.637" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
-            project-id="2fbe758eca704ded86631e0e6cba9eae" export-id="2e100729f7b24d7985473649a610ac21" cached="false">
+        <svg class="sp-only" aria-label="BA_SHO SP" id="emSFKzg9Pox1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 376 31.637" shape-rendering="geometricPrecision"
+            text-rendering="geometricPrecision" project-id="2fbe758eca704ded86631e0e6cba9eae"
+            export-id="2e100729f7b24d7985473649a610ac21" cached="false">
             <g transform="translate(-20-667)">
                 <g clip-path="url(#emSFKzg9Pox11)">
                     <g transform="translate(20 667)">
@@ -120,7 +121,41 @@
     <main class="homepage" id="homepage">
         <!-- fv// -->
         <section class="fv">
-            <div class="fv_container"></div>
+            <div class="fv_container">
+                <div class="fv_swiper" data-fv-swiper>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <picture>
+                                <source media="(max-width: 1024px)" data-srcset="/assets/images/home/fv_01_sp.webp">
+                                <img class="lazy" data-src="/assets/images/home/fv_01.webp" alt="#image1" width="1440"
+                                    height="812" draggable="false" loading="lazy">
+                            </picture>
+                            <div class="fv_content">
+                                <p>New Arrival</p>
+                                <h2>
+                                    Confetti for adults <br />
+                                    Otona no Konpeito
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <picture>
+                                <source media="(max-width: 1024px)" data-srcset="/assets/images/home/fv_02_sp.webp">
+                                <img class="lazy" data-src="/assets/images/home/fv_02.webp" alt="#image2" width="1440"
+                                    height="812" draggable="false" loading="lazy">
+                            </picture>
+                            <div class="fv_content">
+                                <p>New Arrival #2</p>
+                                <h2>
+                                    Lorem ipsum, <br />
+                                    dolor sit
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
         </section>
         <!-- //fv -->
 
