@@ -2,4 +2,70 @@
 ------------------------------------------------------------*/
 
 .c-footer {
+  &_container {
+    border-top: 1px solid rgba($color: #000, $alpha: 0.15);
+    margin-top: 150px;
+    padding-top: 35px;
+    padding-bottom: 200px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  &_items {
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      li {
+        font-size: 1.8rem;
+        width: fit-content;
+        cursor: pointer;
+        transition: opacity 0.3s ease-in-out;
+
+        &:hover {
+          opacity: 0.8;
+
+          a {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    p.copyright {
+      font-size: 1.6rem;
+      text-align: right;
+    }
+  }
+
+  @include maxW {
+    &_container {
+      margin-top: 100px;
+      padding-top: 45px;
+      padding-bottom: 150px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px 20px;
+    }
+
+    &_items {
+      ul {
+        li {
+          font-size: 1.5rem;
+        }
+      }
+
+      p.copyright {
+        display: flex;
+        align-items: flex-end;
+        height: 100%;
+
+        font-size: 1.3rem;
+        line-height: 1.15;
+        text-align: left;
+      }
+    }
+  }
 }

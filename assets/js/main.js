@@ -46,7 +46,7 @@ window.addEventListener("resize", appHeight);
 // ===== href fadeout =====
 document.addEventListener("click", (evt) => {
   const link = evt.target.closest(
-    'a:not([href^="#"]):not([target]):not([href^="mailto"]):not([href^="tel"])'
+    'a:not([href^="#"]):not([href^="/#"]):not([target]):not([href^="mailto"]):not([href^="tel"])'
   );
   if (!link) return;
 
