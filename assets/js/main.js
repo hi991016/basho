@@ -26,7 +26,7 @@ const init = () => {
   initNewsletter();
   // # lazy load
   const ll = new LazyLoad({
-    threshold: 0,
+    threshold: 400,
     elements_selector: ".lazy",
   });
 };
@@ -102,8 +102,18 @@ const [
   document.querySelector("[data-basho]"),
 ];
 
+const resetMenu = () => {
+  menus.classList.remove("--show");
+  toggleMenus.forEach((btn) => (btn.textContent = "Menu"));
+  header.classList.remove("--black");
+  basho.classList.remove("--black");
+  detectScroll(false);
+};
+
 const initMenu = () => {
   if (!menus || !toggleMenus.length) return;
+
+  // # toggle menu
   toggleMenus.forEach((toggle) => {
     toggle.addEventListener("click", () => {
       const shouldBeActive = !menus.classList.contains("--show");
@@ -116,6 +126,28 @@ const initMenu = () => {
       detectScroll(shouldBeActive);
     });
   });
+
+  // # toggle link
+  const links = document.querySelectorAll("[data-menu] a");
+  links.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      resetMenu();
+    });
+  });
+
+  // # hover menu items
+  const [menuItems, menuStaples] = [
+    document.querySelectorAll(".c-menu_left li"),
+    document.querySelector("[data-menu-staples]"),
+  ];
+  menuStaples.addEventListener("mouseenter", () => {
+    menuItems.forEach((item) => {
+      if (item !== menuStaples) item.classList.add("--dimmed");
+    });
+  });
+  menuStaples.addEventListener("mouseleave", () => {
+    menuItems.forEach((item) => item.classList.remove("--dimmed"));
+  });
 };
 
 const initCart = () => {
@@ -127,10 +159,7 @@ const initCart = () => {
       carts.classList.toggle("--show", shouldBeActive);
 
       if (menus && menus.classList.contains("--show")) {
-        menus.classList.remove("--show");
-        toggleMenus.forEach((btn) => (btn.textContent = "Menu"));
-        header.classList.remove("--black");
-        basho.classList.remove("--black");
+        resetMenu();
       }
 
       detectScroll(shouldBeActive);
@@ -140,7 +169,6 @@ const initCart = () => {
 
 const initNewsletter = () => {
   if (!letters || !toggleLetters.length) return;
-
   toggleLetters.forEach((toggle) => {
     toggle.addEventListener("click", () => {
       const shouldBeActive = !letters.classList.contains("--show");
