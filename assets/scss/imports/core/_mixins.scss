@@ -54,6 +54,9 @@
   }
   &::-webkit-scrollbar-thumb {
     background: $bgThumb;
+    border-radius: 10px;
+    border: 6px solid transparent;
+    background-clip: content-box;
   }
 }
 

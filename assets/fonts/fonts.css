@@ -1,7 +1,7 @@
 /* FONT FACE */
 
 @font-face {
-  font-family: "#";
+  font-family: tn;
   src: url("/assets/fonts/TimesNow-SemiLight.woff2") format("woff2"),
     url("/assets/fonts/TimesNow-SemiLight.woff") format("woff");
   font-weight: normal;

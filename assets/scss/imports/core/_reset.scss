@@ -174,12 +174,26 @@ a:hover img {
   filter: alpha(opacity=80);
 }
 
-button {
+button,
+fieldset,
+input,
+select,
+textarea {
   padding: 0;
   margin: 0;
   border: none;
+  border-radius: 0;
   background: none;
-  color: currentColor;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-shadow: none;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-rendering: inherit;
+  cursor: pointer;
 }
 
 figure,
