@@ -85,7 +85,7 @@
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-out;
-  padding: var(--padd);
+  padding: 80px 0;
 
   &.--show {
     opacity: 1;
@@ -103,6 +103,17 @@
     overflow-y: auto;
   }
 
+  @include maxW {
+    height: var(--menu-height);
+    padding: 60px 0;
+    display: block;
+
+    &_container {
+      padding-top: 90px;
+      display: block;
+    }
+  }
+
   &_left {
     ul {
       position: relative;
@@ -113,6 +124,7 @@
       li {
         width: fit-content;
         font-size: 4.8rem;
+        font-weight: 400;
         letter-spacing: -0.5px;
         line-height: 1.1;
         opacity: 1;
@@ -125,6 +137,17 @@
 
         &.--dimmed {
           opacity: 0.3;
+        }
+      }
+    }
+    
+    @include maxW {
+      ul {
+        gap: 7px;
+
+        li {
+          width: 100%;
+          font-size: 3rem;
         }
       }
     }
@@ -153,8 +176,7 @@
       flex-direction: column;
       gap: 11px;
 
-      a,
-      p {
+      a {
         font-family: var(--tn-fonts);
         font-size: 2.6rem;
         font-weight: 400;
@@ -162,10 +184,6 @@
         letter-spacing: -0.5px;
         width: fit-content;
         transition: opacity 0.3s ease-in-out;
-
-        &:hover {
-          opacity: 0.8;
-        }
       }
     }
 
@@ -180,6 +198,21 @@
       display: flex;
       justify-content: flex-end;
     }
+
+    @include maxW {
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.5s ease-in-out;
+
+      &_list {
+        padding: 35px 0 45px;
+        gap: 7px;
+
+        a {
+          font-size: 2.2rem;
+        }
+      }
+    }
   }
 
   &_right {
@@ -188,13 +221,6 @@
     grid-template-columns: repeat(4, 1fr);
 
     ul {
-      &:nth-child(1) {
-        grid-column: 3/4;
-      }
-      &:nth-child(2) {
-        grid-column: 4/5;
-      }
-
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -204,19 +230,43 @@
         font-size: 1.8rem;
         line-height: 1.1;
         cursor: pointer;
-        transition: opacity 0.3s ease-in-out;
+      }
+    }
 
-        &:hover {
-          a {
-            opacity: 1;
+    @include minW {
+      ul {
+        &:nth-child(1) {
+          grid-column: 3/4;
+        }
+        &:nth-child(2) {
+          grid-column: 4/5;
+        }
+
+        li {
+          transition: opacity 0.3s ease-in-out;
+
+          &:hover {
+            opacity: 0.8;
+
+            a {
+              opacity: 1;
+            }
           }
         }
       }
     }
-  }
 
-  @include maxW {
-    height: var(--menu-height);
+    @include maxW {
+      padding: 60px 0;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+
+      ul {
+        li {
+          font-size: 1.5rem;
+        }
+      }
+    }
   }
 }
 

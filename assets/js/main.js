@@ -110,6 +110,8 @@ const resetMenu = () => {
   detectScroll(false);
 };
 
+// # menu
+
 const initMenu = () => {
   if (!menus || !toggleMenus.length) return;
 
@@ -134,21 +136,78 @@ const initMenu = () => {
       resetMenu();
     });
   });
+};
 
-  // # hover menu items
-  const [menuItems, menuStaples] = [
-    document.querySelectorAll(".c-menu_left li"),
-    document.querySelector("[data-menu-staples]"),
-  ];
-  menuStaples.addEventListener("mouseenter", () => {
-    menuItems.forEach((item) => {
-      if (item !== menuStaples) item.classList.add("--dimmed");
+// # click/hover accordion
+
+const [menuItems, menuAccordion, menuPanel] = [
+  document.querySelectorAll(".c-menu_left li"),
+  document.querySelectorAll("[data-menu-accordion]"),
+  document.querySelectorAll("[data-menu-panel]"),
+];
+
+const handleHoverMenu = () => {
+  menuAccordion.forEach((menu) => {
+    menu.addEventListener("mouseenter", () => {
+      menuItems.forEach((item) => {
+        if (item !== menu) item.classList.add("--dimmed");
+      });
+    });
+
+    menu.addEventListener("mouseleave", () => {
+      menuItems.forEach((item) => item.classList.remove("--dimmed"));
     });
   });
-  menuStaples.addEventListener("mouseleave", () => {
-    menuItems.forEach((item) => item.classList.remove("--dimmed"));
+};
+
+const handleClickMenu = () => {
+  menuAccordion.forEach((btn, i) => {
+    btn.addEventListener("click", (e) => {
+      const panel = menuPanel[i];
+      const isOpening = !panel.style.maxHeight;
+
+      // show accordion
+      panel.style.maxHeight = isOpening ? panel.scrollHeight + "px" : null;
+      btn.classList.toggle("--active", isOpening);
+
+      // --dim other items when opening accordion
+      menuItems.forEach((item) => {
+        if (item !== btn) {
+          item.classList.toggle("--dimmed", isOpening);
+        }
+      });
+    });
+  });
+
+  // click outside to reset
+  document.addEventListener("click", (e) => {
+    const isMenuClick = [...menuAccordion, ...menuPanel].some(element => 
+      element.contains(e.target)
+    );
+    if (!isMenuClick) {
+      menuPanel.forEach((panel) => (panel.style.maxHeight = null));
+      menuItems.forEach((item) => item.classList.remove("--dimmed"));
+    }
   });
 };
+
+const HandleResponsiveMenu = () => {
+  // reset
+  menuPanel.forEach((panel) => (panel.style.maxHeight = null));
+  menuItems.forEach((item) => item.classList.remove("--dimmed"));
+
+  // setup
+  if (!isMobile.matches) {
+    handleHoverMenu();
+  } else {
+    handleClickMenu();
+  }
+};
+
+HandleResponsiveMenu();
+window.addEventListener("resize", HandleResponsiveMenu);
+
+// # cart
 
 const initCart = () => {
   if (!carts || !toggleCarts.length) return;
@@ -157,15 +216,15 @@ const initCart = () => {
     toggle.addEventListener("click", () => {
       const shouldBeActive = !carts.classList.contains("--show");
       carts.classList.toggle("--show", shouldBeActive);
-
       if (menus && menus.classList.contains("--show")) {
         resetMenu();
       }
-
       detectScroll(shouldBeActive);
     });
   });
 };
+
+// # newsletter
 
 const initNewsletter = () => {
   if (!letters || !toggleLetters.length) return;
