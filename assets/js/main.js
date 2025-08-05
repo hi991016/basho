@@ -6,8 +6,10 @@ const eventsTrigger = ["pageshow", "scroll"];
 
 const detectScroll = (detect) => {
   if (detect) {
+    window.lenis.stop();
     document.body.style.overflow = "hidden";
   } else {
+    window.lenis.start();
     document.body.style.removeProperty("overflow");
   }
 };
@@ -30,6 +32,24 @@ const init = () => {
     elements_selector: ".lazy",
   });
 };
+
+// ===== lenis =====
+window.lenis = new Lenis({
+  duration: 1.0,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(1 - t, 2.5)),
+  smooth: true,
+  mouseMultiplier: 1.0,
+  smoothTouch: true,
+  touchMultiplier: 1.5,
+  infinite: false,
+  direction: "vertical",
+  gestureDirection: "vertical",
+});
+function raf(t) {
+  window.lenis.raf(t);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
 
 // ===== app height =====
 const appHeight = () => {
@@ -181,7 +201,7 @@ const handleClickMenu = () => {
 
   // click outside to reset
   document.addEventListener("click", (e) => {
-    const isMenuClick = [...menuAccordion, ...menuPanel].some(element => 
+    const isMenuClick = [...menuAccordion, ...menuPanel].some((element) =>
       element.contains(e.target)
     );
     if (!isMenuClick) {
