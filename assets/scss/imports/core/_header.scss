@@ -197,10 +197,6 @@
 
     display: flex;
     flex-direction: column;
-
-    @include maxW {
-      height: var(--menu-height);
-    }
   }
 
   &_inner {
@@ -265,8 +261,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      padding: 7px 14px;
+      gap: 15px;
+      padding: 8px 15px;
       border-radius: 80px;
       border: 1px solid var(--black-cl);
       overflow: hidden;
@@ -339,6 +335,43 @@
       opacity: 1;
       color: var(--black-cl);
       background: transparent;
+    }
+  }
+
+  @include maxW {
+    &_container {
+      width: 100%;
+      height: var(--menu-height);
+      padding: 19px 20px 20px;
+    }
+
+    &_table {
+      table {
+        td.meta {
+          font-size: 1.5rem;
+        }
+      }
+
+      &_counter {
+        font-size: 1.4rem;
+      }
+    }
+
+    &_close {
+      padding-bottom: 20px;
+
+      p {
+        font-size: 1.5rem;
+      }
+    }
+
+    &_total {
+      font-size: 1.5rem;
+    }
+
+    &_btn {
+      height: 45px;
+      font-size: 1.5rem;
     }
   }
 }
