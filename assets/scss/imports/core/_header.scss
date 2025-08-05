@@ -22,7 +22,6 @@
     position: fixed;
     top: 31px;
     width: 100%;
-    padding: 0 35px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -53,7 +52,6 @@
   @include maxW {
     &_container {
       top: 16px;
-      padding: 0 20px;
     }
 
     &_left {
@@ -183,7 +181,7 @@
       top: 45%;
       width: 100%;
       min-height: 106px;
-      padding: 0 20px;
+      padding: 0 var(--paddsp);
 
       h2 {
         font-size: 3rem;
@@ -249,7 +247,8 @@
     right: 0;
     width: 414px;
     height: 100%;
-    padding: 31px 35px 35px;
+    padding-top: 31px;
+    padding-bottom: 35px;
     background-color: var(--white-cl);
     z-index: 2;
     pointer-events: none;
@@ -404,7 +403,8 @@
     &_container {
       width: 100%;
       height: var(--menu-height);
-      padding: 19px 20px 20px;
+      padding-top: 19px;
+      padding-bottom: 20px;
     }
 
     &_table {
