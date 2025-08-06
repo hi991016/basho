@@ -50,7 +50,7 @@
       top: 45%;
       display: grid;
       grid-template-columns: 14.599% 1fr;
-      align-items: flex-start;
+      align-items: baseline;
       width: 90%;
       gap: 13px;
       padding: 0 var(--padd);
@@ -134,28 +134,12 @@
 
         span {
           display: inline-block;
+          transform: translateY(2px);
         }
       }
 
-      a {
+      &_btn {
         margin-top: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 119px;
-        height: 41px;
-        border-radius: 80px;
-        background: transparent;
-        border: 1px solid var(--black-cl);
-        font-size: 1.8rem;
-        color: var(--black-cl);
-        transition: all 0.15s linear;
-
-        &:hover {
-          opacity: 1;
-          background: var(--black-cl);
-          color: var(--white-cl);
-        }
       }
     }
 
@@ -221,18 +205,16 @@
           }
         }
 
-        a {
-          margin-top: 32px;
+        &_btn {
           width: 98px;
-          height: 35px;
-          font-size: 1.4rem;
+          margin-top: 32px;
         }
       }
 
       &_photo {
         width: 100%;
         margin: 0 auto;
-        padding: 0 47px 0 30px;
+        padding: 0 17px 0 10px;
 
         &_pic1 {
           top: calc(var(--vh) * 26);
@@ -258,8 +240,87 @@
   .pickup {
     &_container {
       position: relative;
-      padding-top: 100px;
-      margin-top: 200px;
+      padding-top: 150px;
+      margin-top: 150px;
+    }
+
+    &_feature {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 73.4031%;
+
+      picture {
+        padding-bottom: calc(705 / 1057 * 100%);
+      }
+    }
+
+    &_content {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      &_desc {
+        font-family: var(--tn-fonts);
+        font-size: 2.6rem;
+        font-weight: 400;
+        letter-spacing: -0.5px;
+        line-height: 1.1;
+      }
+
+      &_price {
+        font-size: 1.8rem;
+      }
+
+      &_btn {
+        margin-top: 45px;
+      }
+    }
+
+    @include maxW {
+      &_container {
+        padding-top: 60px;
+        margin-top: 60px;
+      }
+
+      &_feature {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 25px;
+
+        picture {
+          padding-bottom: calc(525 / 394 * 100%);
+        }
+      }
+
+      &_right {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+        padding-left: var(--paddsp);
+      }
+
+      &_content {
+        margin-top: initial;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 20px;
+
+        &_desc {
+          font-size: 2.1rem;
+          line-height: 1.15;
+        }
+
+        &_price {
+          font-size: 1.6rem;
+        }
+
+        &_btn {
+          margin-top: 22px;
+        }
+      }
     }
   }
 }
