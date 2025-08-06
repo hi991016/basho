@@ -113,7 +113,6 @@
   // ===== intro =====
   .intro {
     &_container {
-      position: relative;
       margin-top: 220px;
       display: flex;
       flex-direction: column;
@@ -239,9 +238,8 @@
   // ===== intro =====
   .pickup {
     &_container {
-      position: relative;
       padding-top: 150px;
-      margin-top: 150px;
+      margin-top: 140px;
     }
 
     &_feature {
@@ -288,17 +286,17 @@
         flex-direction: column-reverse;
         gap: 25px;
 
-        picture {
-          padding-bottom: calc(525 / 394 * 100%);
-        }
-      }
+        &_r {
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+          width: 100%;
+          padding-left: var(--paddsp);
 
-      &_right {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        width: 100%;
-        padding-left: var(--paddsp);
+          picture {
+            padding-bottom: calc(525 / 394 * 100%);
+          }
+        }
       }
 
       &_content {
@@ -319,6 +317,95 @@
 
         &_btn {
           margin-top: 22px;
+        }
+      }
+    }
+  }
+
+  // ===== subscription =====
+  .subscript {
+    &_container {
+      padding-top: 150px;
+      margin-top: 70px;
+    }
+
+    &_feature {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &_content {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 61.314% 1fr;
+      align-items: baseline;
+      gap: 20px;
+
+      &_desc {
+        font-family: var(--tn-fonts);
+        font-size: 2.2rem;
+        letter-spacing: -0.5px;
+        line-height: 1.32;
+      }
+
+      &_info {
+        width: 100%;
+        display: flex;
+        gap: 45px;
+        justify-content: flex-end;
+
+        ul {
+          display: flex;
+          flex-direction: column;
+
+          li {
+            font-size: 1.8rem;
+            line-height: 1.4;
+          }
+        }
+      }
+    }
+
+    &_btn {
+      margin-top: 36px;
+    }
+
+    @include maxW {
+      &_container {
+        padding-top: 60px;
+        margin-top: 60px;
+      }
+
+      &_feature {
+        grid-template-columns: 1fr;
+        margin-right: calc(0px - var(--paddsp));
+
+        picture {
+          padding-bottom: calc(263 / 394 * 100%);
+        }
+      }
+
+      &_content {
+        margin-top: 35px;
+        grid-template-columns: 1fr;
+        gap: 32px;
+
+        &_desc {
+          font-size: 1.8rem;
+        }
+
+        &_info {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          justify-content: flex-start;
+          gap: 20px;
+
+          ul {
+            li {
+              font-size: 1.4rem;
+            }
+          }
         }
       }
     }

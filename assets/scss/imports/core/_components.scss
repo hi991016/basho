@@ -194,6 +194,10 @@
     font-size: 1.6rem;
   }
 
+  &.--disable {
+    pointer-events: none !important;
+  }
+
   &.--white-solid {
     border: 1px solid var(--white-cl);
     color: var(--white-cl);
