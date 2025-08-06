@@ -1,8 +1,17 @@
 // ===== init =====
 const homepage = () => {
+  // # fix position
+  fixPosition();
   // # init loading
   initLoading();
 };
+
+// ===== fix position mobile =====
+const fixPosition = () => {
+  const vh = document.documentElement.clientHeight;
+  document.documentElement.style.setProperty("--vh", `${vh * 0.01}px`);
+};
+window.addEventListener("resize", fixPosition);
 
 // ===== init loading =====
 const preventScroll = (e) => e.preventDefault();

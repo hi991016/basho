@@ -11,6 +11,21 @@
   }
 }
 
+.c-picture {
+  display: block;
+  position: relative;
+  z-index: 1;
+  height: auto;
+  padding-bottom: 100%;
+  background: var(--ant-cl);
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+  }
+}
+
 /* --------------------------------- loading -------------------------------- */
 
 .c-loading {

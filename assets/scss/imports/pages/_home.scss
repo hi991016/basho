@@ -123,6 +123,7 @@
       position: sticky;
       top: 50%;
       transform: translateY(-50%);
+      z-index: 1;
       margin-top: 175px;
 
       &_desc {
@@ -159,8 +160,45 @@
     }
 
     &_photo {
-      background-color: bisque;
-      height: 100vh;
+      position: relative;
+      width: 47.222vw;
+      margin: 40px auto 0;
+
+      &_pic1 {
+        position: sticky;
+        top: 16%;
+        width: 52.941%;
+        margin: 0 auto;
+        margin-bottom: 45px;
+
+        picture {
+          padding-bottom: calc(540 / 360 * 100%);
+        }
+      }
+
+      &_pic2 {
+        position: sticky;
+        top: 32%;
+        width: 40%;
+        margin-top: 300px;
+        margin-bottom: 90px;
+
+        picture {
+          padding-bottom: calc(360 / 272 * 100%);
+        }
+      }
+
+      &_pic3 {
+        position: sticky;
+        top: 56%;
+        width: 29.118%;
+        margin-top: 200px;
+        margin-left: auto;
+
+        picture {
+          padding-bottom: calc(248 / 198 * 100%);
+        }
+      }
     }
 
     @include maxW {
@@ -190,6 +228,29 @@
           font-size: 1.4rem;
         }
       }
+
+      &_photo {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 47px 0 30px;
+
+        &_pic1 {
+          top: calc(var(--vh) * 26);
+          width: 46.377vw;
+          margin-bottom: 25px;
+        }
+
+        &_pic2 {
+          top: calc(var(--vh) * 36);
+          width: 35.024vw;
+          margin-bottom: 50px;
+        }
+
+        &_pic3 {
+          top: calc(var(--vh) * 62);
+          width: 25.362vw;
+        }
+      }
     }
   }
 
@@ -198,9 +259,7 @@
     &_container {
       position: relative;
       padding-top: 100px;
-      margin-top: 120px;
-      height: 100vh;
-      background: cadetblue;
+      margin-top: 200px;
     }
   }
 }
