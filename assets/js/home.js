@@ -117,4 +117,4 @@ const fvSwiper = new Swiper("[data-fv-swiper]", {
 });
 
 // ### ===== DOMCONTENTLOADED ===== ###
-window.addEventListener("DOMContentLoaded", homepage);
+window.addEventListener("pageshow", homepage);

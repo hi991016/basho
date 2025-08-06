@@ -214,3 +214,74 @@
     font-size: 1.4rem !important;
   }
 }
+
+/* --------------------------------- journal -------------------------------- */
+
+.c-journal {
+  &_inner {
+    padding-top: 150px;
+    margin-top: 50px;
+  }
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-size: 2.4rem;
+      font-weight: 400;
+    }
+
+    a {
+      font-size: 1.9rem;
+    }
+  }
+
+  &_list {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  &_items {
+    p {
+      margin-top: 20px;
+      font-family: var(--tn-fonts);
+      font-size: 2.1rem;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+  }
+
+  @include maxW {
+    &_inner {
+      padding-top: 60px;
+      margin-top: 60px;
+    }
+
+    &_header {
+      h2 {
+        font-size: 2rem;
+      }
+
+      a {
+        font-size: 1.6rem;
+      }
+    }
+
+    &_list {
+      margin-top: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px 20px;
+    }
+
+    &_items {
+      p {
+        margin-top: 15px;
+        font-size: 1.8rem;
+      }
+    }
+  }
+}

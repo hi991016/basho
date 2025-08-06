@@ -257,4 +257,4 @@ const initNewsletter = () => {
 };
 
 // ### ===== DOMCONTENTLOADED ===== ###
-window.addEventListener("load", init);
+window.addEventListener("pageshow", init);
