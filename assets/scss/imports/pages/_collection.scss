@@ -1,0 +1,39 @@
+/* -------------------------------------------------------------------------- */
+/*                               collection page                              */
+/* -------------------------------------------------------------------------- */
+
+.collectionpage {
+  // ===== collection =====
+  .collection {
+    &_container {
+      padding-top: 200px;
+    }
+
+    &_category {
+      margin-top: 100px;
+    }
+
+    &_list {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 60px 20px;
+    }
+
+    @include maxW {
+      &_container {
+        padding-top: 150px;
+      }
+
+      &_category {
+        margin-top: 60px;
+      }
+
+      &_list {
+        margin-top: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 36px 20px;
+      }
+    }
+  }
+}

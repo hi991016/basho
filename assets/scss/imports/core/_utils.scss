@@ -14,6 +14,25 @@
   white-space: nowrap;
 }
 
+[data-tabs-panels] {
+  opacity: 0;
+  animation: 1s forwards fadeTab;
+  display: none;
+  visibility: hidden;
+
+  &.--active {
+    display: block;
+    visibility: visible;
+  }
+
+  @keyframes fadeTab {
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
 /* lazy load */
 img.lazy {
   opacity: 0;

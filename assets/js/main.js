@@ -16,8 +16,6 @@ const detectScroll = (detect) => {
 
 // ===== init =====
 const init = () => {
-  // #
-  document.body.classList.remove("fadeout");
   // # app height
   appHeight();
   // # init menu
@@ -26,9 +24,13 @@ const init = () => {
   initCart();
   // # init newsletter
   initNewsletter();
+  // # init tabs
+  initTabs();
+  // # init product feature swiper
+  initProdfeatSwipers();
   // # lazy load
   const ll = new LazyLoad({
-    threshold: 400,
+    threshold: 100,
     elements_selector: ".lazy",
   });
 };
@@ -256,5 +258,115 @@ const initNewsletter = () => {
   });
 };
 
+// ===== handle tabs change ======
+
+const initTabs = () => {
+  const tabs = document.querySelectorAll("[data-tabs-items]");
+  const panels = document.querySelectorAll("[data-tabs-panels]");
+  if (!tabs.length || !panels.length) return;
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const targetId = tab.getAttribute("data-tabs-items");
+      const contentWrapper = document.querySelector("[data-tabs]");
+      contentWrapper?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      window.lenis.stop();
+
+      // remove active classes
+      tabs.forEach((t) => t.classList.remove("--active"));
+      panels.forEach((c) => c.classList.remove("--active"));
+
+      // add active to clicked tab and corresponding content
+      window.lenis.start();
+      document
+        .querySelectorAll(`[data-tabs-items="${targetId}"]`)
+        .forEach((matchedTab) => matchedTab.classList.add("--active"));
+      const content = document.querySelector(
+        `[data-tabs-panels="${targetId}"]`
+      );
+      if (content) content.classList.add("--active");
+    });
+  });
+};
+
+// ===== swiper product feature ======
+
+const initProdfeatSwipers = () => {
+  const [tabsPanels, swiperEls, navPrev, navNext] = [
+    document.querySelectorAll("[data-tabs-panels]"),
+    document.querySelectorAll("[data-prodfeat-swiper]"),
+    document.querySelector("[data-prodfeat-prev]"),
+    document.querySelector("[data-prodfeat-next]"),
+  ];
+  if (!navPrev || !navNext || swiperEls.length === 0) return;
+  const swipers = [];
+
+  // init all swiper
+  swiperEls.forEach((el) => {
+    const swiper = new Swiper(el, {
+      speed: 700,
+      allowTouchMove: true,
+      slidesPerView: 1.369,
+      spaceBetween: 12,
+      breakpoints: {
+        1025: {
+          allowTouchMove: false,
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+      },
+      navigation: {
+        nextEl: navNext,
+        prevEl: navPrev,
+      },
+    });
+    swipers.push({ el, swiper });
+  });
+
+  // auto enable navigation for active panel
+  const updateActiveSwiperNav = () => {
+    swipers.forEach((obj) => {
+      const { el, swiper } = obj;
+      const isVisible = el
+        .closest("[data-tabs-panels]")
+        ?.classList.contains("--active");
+
+      if (isVisible) {
+        swiper.params.navigation.nextEl = navNext;
+        swiper.params.navigation.prevEl = navPrev;
+        swiper.navigation.init();
+
+        swiper.slideTo(0, 0);
+        swiper.updateSize();
+        swiper.updateSlides();
+
+        requestAnimationFrame(() => {
+          swiper.navigation.update();
+        });
+      } else {
+        swiper.navigation.destroy();
+      }
+    });
+  };
+  
+  if (tabsPanels.length) {
+    updateActiveSwiperNav();
+  }
+
+  // if tabs exist, detect for tab change event
+  tabsPanels.forEach((panel) => {
+    const observer = new MutationObserver(() => {
+      updateActiveSwiperNav();
+    });
+    observer.observe(panel, { attributes: true, attributeFilter: ["class"] });
+  });
+};
+
 // ### ===== DOMCONTENTLOADED ===== ###
-window.addEventListener("pageshow", init);
+window.addEventListener("pageshow", () => {
+  document.body.classList.remove("fadeout");
+});
+window.addEventListener("DOMContentLoaded", init);

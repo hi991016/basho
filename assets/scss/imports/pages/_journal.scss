@@ -1,0 +1,28 @@
+/* -------------------------------------------------------------------------- */
+/*                                journal page                                */
+/* -------------------------------------------------------------------------- */
+
+.journalpage {
+  // ===== journal =====
+  .journal {
+    &_container {
+      padding-top: 200px;
+    }
+
+    &_list {
+      margin-top: 100px;
+      gap: 57px 20px;
+    }
+
+    @include maxW {
+      &_container {
+        padding-top: 150px;
+      }
+
+      &_list {
+        margin-top: 60px;
+        gap: 27px 20px;
+      }
+    }
+  }
+}
