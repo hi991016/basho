@@ -58,7 +58,7 @@
 
       p {
         font-size: 1.9rem;
-        line-height: 1.31;
+        line-height: 1.32;
       }
 
       h2 {
@@ -151,8 +151,8 @@
         position: sticky;
         top: 16%;
         width: 52.941%;
-        margin: 0 auto;
-        margin-bottom: 45px;
+        margin: 0 auto 45px;
+        will-change: transform;
 
         picture {
           padding-bottom: calc(540 / 360 * 100%);
@@ -163,8 +163,8 @@
         position: sticky;
         top: 32%;
         width: 40%;
-        margin-top: 300px;
-        margin-bottom: 90px;
+        margin: 300px 0 95px;
+        will-change: transform;
 
         picture {
           padding-bottom: calc(360 / 272 * 100%);
@@ -175,8 +175,8 @@
         position: sticky;
         top: 56%;
         width: 29.118%;
-        margin-top: 200px;
-        margin-left: auto;
+        margin: 200px 0 0 auto;
+        will-change: transform;
 
         picture {
           padding-bottom: calc(248 / 198 * 100%);
