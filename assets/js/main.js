@@ -351,7 +351,7 @@ const initProdfeatSwipers = () => {
       }
     });
   };
-  
+
   if (tabsPanels.length) {
     updateActiveSwiperNav();
   }
@@ -364,6 +364,72 @@ const initProdfeatSwipers = () => {
     observer.observe(panel, { attributes: true, attributeFilter: ["class"] });
   });
 };
+
+// ===== products ======
+const initProductSwiper = (selector = "[data-productpage-swiper]") => {
+  const container = document.querySelector(selector);
+  if (!container) return;
+
+  const wrapper = container.querySelector(".swiper-wrapper");
+  const slides = wrapper.querySelectorAll(".swiper-slide");
+
+  // if less than 3 slides, clone to have enough
+  if (slides.length < 3) {
+    slides.forEach((slide) => {
+      const clone = slide.cloneNode(true);
+      const source = clone.querySelector("source");
+      if (source && source.dataset.srcset) {
+        source.srcset = source.dataset.srcset;
+      }
+      wrapper.appendChild(clone);
+    });
+  }
+
+  // Init Swiper
+  const swiper = new Swiper(selector, {
+    loop: true,
+    speed: 700,
+    slidesPerView: 1,
+    allowTouchMove: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + (index + 1) + "</span>";
+      },
+    },
+    breakpoints: {
+      1025: {
+        slidesPerView: "auto",
+        allowTouchMove: false,
+      },
+    },
+    on: {
+      init: (swiper) => {
+        updatePaginationWidth(swiper);
+      },
+      resize: (swiper) => {
+        updatePaginationWidth(swiper);
+      },
+    },
+  });
+
+  return swiper;
+};
+
+const updatePaginationWidth = (swiper) => {
+  const pagination = swiper.el.querySelector("[data-productpage-pagination]");
+  const firstSlide = swiper.slides[swiper.activeIndex] || swiper.slides[0];
+  if (pagination && firstSlide) {
+    pagination.style.width = `${firstSlide.offsetWidth}px`;
+  }
+};
+
+initProductSwiper();
 
 // ### ===== DOMCONTENTLOADED ===== ###
 window.addEventListener("pageshow", () => {
