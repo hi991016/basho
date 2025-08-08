@@ -330,8 +330,10 @@
     }
 
     @include maxW {
-      padding-top: 60px;
-      margin-top: 60px;
+      &_container {
+        padding-top: 60px;
+        margin-top: 60px;
+      }
     }
   }
 

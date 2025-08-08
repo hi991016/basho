@@ -26,6 +26,8 @@ const init = () => {
   initNewsletter();
   // # init tabs
   initTabs();
+  // # init accordion
+  initAccordion();
   // # init product feature swiper
   initProdfeatSwipers();
   // # lazy load
@@ -288,6 +290,25 @@ const initTabs = () => {
         `[data-tabs-panels="${targetId}"]`
       );
       if (content) content.classList.add("--active");
+    });
+  });
+};
+
+// ===== accordion ======
+const initAccordion = () => {
+  const accordion = document.querySelectorAll("[data-accordion-btn]");
+  const panelAccordion = document.querySelectorAll("[data-accordion-panel]");
+  if (!accordion || !panelAccordion) return;
+
+  accordion.forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("--active");
+      const panel = panelAccordion[i];
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
     });
   });
 };
