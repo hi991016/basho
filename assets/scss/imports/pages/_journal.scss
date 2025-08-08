@@ -6,7 +6,7 @@
   // ===== journal =====
   .journal {
     &_container {
-      padding-top: 200px;
+      padding-top: 210px;
     }
 
     &_list {
@@ -35,7 +35,7 @@
 
     &_sticky {
       position: sticky;
-      top: 200px;
+      top: 210px;
 
       h2 {
         font-size: 3rem;
