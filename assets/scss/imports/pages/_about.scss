@@ -16,52 +16,48 @@
       &_content {
         width: 100%;
         font-family: var(--tn-fonts);
-        font-size: 3.125vw;
+        font-size: 4.5rem;
         font-weight: 400;
-        letter-spacing: -0.5px;
+        letter-spacing: -1.15px;
         line-height: 1.23;
 
         span {
           display: inline-block;
           transform: translateY(2px);
-
-          svg {
-            width: 11.786vw;
-            height: auto;
-          }
         }
       }
     }
 
     &_content {
       width: 86.458vw;
+      max-width: 1245px;
       margin: 100px auto 60px;
 
       &_text {
         margin-top: 115px;
 
         p {
-          text-indent: 5.208vw;
+          text-indent: 7.5rem;
           font-family: var(--tn-fonts);
-          font-size: 2.222vw;
+          font-size: 3.2rem;
           font-weight: 400;
-          letter-spacing: -0.8px;
+          letter-spacing: -0.7px;
           line-height: 1.27;
         }
       }
 
       &_text1 {
-        padding-left: 8.333vw;
-        padding-right: 12.5vw;
+        padding-left: 120px;
+        padding-right: 180px;
 
         p {
-          padding-top: 8.681vw;
-          padding-left: 4.514vw;
+          padding-left: 65px;
+          padding-top: 125px;
         }
 
         .photo {
           float: left;
-          width: 18.75vw;
+          width: 270px;
           margin-right: 20px;
 
           picture {
@@ -72,12 +68,12 @@
 
       &_text2 {
         p {
-          padding-left: 12.847vw;
+          padding-left: 185px;
         }
 
         .photo {
           float: right;
-          width: 16.667vw;
+          width: 240px;
           margin-left: 28px;
 
           picture {
@@ -88,16 +84,16 @@
 
       &_text3 {
         p {
-          padding-left: 12.847vw;
-          padding-right: 12.5vw;
+          padding-left: 185px;
+          padding-right: 180px;
         }
 
         .photo {
           display: block;
           float: left;
-          width: 22.431vw;
+          width: 323px;
           margin-right: 20px;
-          margin-left: -12.847vw;
+          margin-left: -185px;
 
           picture {
             padding-bottom: calc(425 / 323 * 100%);
