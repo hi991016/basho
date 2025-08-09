@@ -29,12 +29,15 @@
     }
 
     &_content {
-      width: 86.458vw;
       max-width: 1245px;
       margin: 100px auto 60px;
 
       &_text {
         margin-top: 115px;
+
+        &:first-child {
+          margin-top: initial;
+        }
 
         p {
           text-indent: 7.5rem;
@@ -47,12 +50,10 @@
       }
 
       &_text1 {
-        padding-left: 120px;
-        padding-right: 180px;
+        padding: 0 180px 0 120px;
 
         p {
-          padding-left: 65px;
-          padding-top: 125px;
+          padding: 125px 0 0 65px;
         }
 
         .photo {
@@ -68,7 +69,7 @@
 
       &_text2 {
         p {
-          padding-left: 185px;
+          padding: 0 0 0 185px;
         }
 
         .photo {
@@ -84,16 +85,14 @@
 
       &_text3 {
         p {
-          padding-left: 185px;
-          padding-right: 180px;
+          padding: 0 180px 0 185px;
         }
 
         .photo {
           display: block;
           float: left;
           width: 323px;
-          margin-right: 20px;
-          margin-left: -185px;
+          margin: 0 20px 0 -185px;
 
           picture {
             padding-bottom: calc(425 / 323 * 100%);
@@ -114,6 +113,50 @@
           svg {
             width: 116.49px;
             height: auto;
+          }
+        }
+      }
+
+      &_content {
+        max-width: 100%;
+        margin: 20px auto 0;
+        padding: 0 var(--paddsp);
+
+        &_text {
+          padding: 0;
+          margin-top: 55px;
+
+          p {
+            text-indent: 5rem;
+            font-size: 2.2rem;
+            padding: 0;
+          }
+        }
+
+        &_text1 {
+          p {
+            padding-top: 165px;
+          }
+
+          .photo {
+            width: min(45.169vw, 187px);
+            margin: 0 7px 0 0;
+          }
+        }
+
+        &_text2 {
+          .photo {
+            float: unset;
+            width: min(32.367vw, 134px);
+            margin: 0 0 55px auto;
+          }
+        }
+
+        &_text3 {
+          .photo {
+            float: unset;
+            width: min(49.275vw, 204px);
+            margin: 0 auto 55px;
           }
         }
       }
