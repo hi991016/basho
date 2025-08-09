@@ -420,7 +420,8 @@ const initProductSwiper = (selector = "[data-productpage-swiper]") => {
       el: ".swiper-pagination",
       clickable: true,
       renderBullet: function (index, className) {
-        return '<span class="' + className + '">' + (index + 1) + "</span>";
+        if (index >= slides.length) return ""; // bỏ bullet dư
+        return `<span class="${className}">${index + 1}</span>`;
       },
     },
     breakpoints: {
@@ -436,6 +437,9 @@ const initProductSwiper = (selector = "[data-productpage-swiper]") => {
       resize: (swiper) => {
         updatePaginationWidth(swiper);
       },
+      slideChange: (swiper) => {
+        setActiveBullet(swiper, slides.length);
+      },
     },
   });
 
@@ -448,6 +452,16 @@ const updatePaginationWidth = (swiper) => {
   if (pagination && firstSlide) {
     pagination.style.width = `${firstSlide.offsetWidth}px`;
   }
+};
+
+const setActiveBullet = (swiper, realSlidesCount) => {
+  const bullets = swiper.pagination.bullets;
+  bullets.forEach((bullet, idx) => {
+    bullet.classList.toggle(
+      swiper.params.pagination.bulletActiveClass,
+      idx === swiper.realIndex % realSlidesCount
+    );
+  });
 };
 
 initProductSwiper();
