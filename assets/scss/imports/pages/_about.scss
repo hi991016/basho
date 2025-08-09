@@ -5,5 +5,122 @@
 .aboutpage {
   // ===== about =====
   .about {
+    &_fv {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      &_content {
+        width: 100%;
+        font-family: var(--tn-fonts);
+        font-size: 3.125vw;
+        font-weight: 400;
+        letter-spacing: -0.5px;
+        line-height: 1.23;
+
+        span {
+          display: inline-block;
+          transform: translateY(2px);
+
+          svg {
+            width: 11.786vw;
+            height: auto;
+          }
+        }
+      }
+    }
+
+    &_content {
+      width: 86.458vw;
+      margin: 100px auto 60px;
+
+      &_text {
+        margin-top: 115px;
+
+        p {
+          text-indent: 5.208vw;
+          font-family: var(--tn-fonts);
+          font-size: 2.222vw;
+          font-weight: 400;
+          letter-spacing: -0.8px;
+          line-height: 1.27;
+        }
+      }
+
+      &_text1 {
+        padding-left: 8.333vw;
+        padding-right: 12.5vw;
+
+        p {
+          padding-top: 8.681vw;
+          padding-left: 4.514vw;
+        }
+
+        .photo {
+          float: left;
+          width: 18.75vw;
+          margin-right: 20px;
+
+          picture {
+            padding-bottom: calc(356 / 270 * 100%);
+          }
+        }
+      }
+
+      &_text2 {
+        p {
+          padding-left: 12.847vw;
+        }
+
+        .photo {
+          float: right;
+          width: 16.667vw;
+          margin-left: 28px;
+
+          picture {
+            padding-bottom: calc(315 / 240 * 100%);
+          }
+        }
+      }
+
+      &_text3 {
+        p {
+          padding-left: 12.847vw;
+          padding-right: 12.5vw;
+        }
+
+        .photo {
+          display: block;
+          float: left;
+          width: 22.431vw;
+          margin-right: 20px;
+          margin-left: -12.847vw;
+
+          picture {
+            padding-bottom: calc(425 / 323 * 100%);
+          }
+        }
+      }
+    }
+
+    @include maxW {
+      &_fv {
+        height: var(--app-height);
+
+        &_content {
+          font-size: 2.8rem;
+          letter-spacing: -0.8px;
+          line-height: 1.27;
+
+          svg {
+            width: 116.49px;
+            height: auto;
+          }
+        }
+      }
+    }
   }
 }
