@@ -280,7 +280,6 @@ const initTabs = () => {
     const content = document.querySelector(`[data-tabs-panels="${targetId}"]`);
     if (content) {
       content.classList.add("--active");
-      // scroll to the content wrapper
       const contentWrapper = document.querySelector("[data-tabs]");
       contentWrapper?.scrollIntoView({
         behavior: "smooth",
@@ -302,17 +301,12 @@ const initTabs = () => {
   // check URL hash on page load
   const hash = window.location.hash.replace("#", "");
   if (hash) {
-    // check if a tab with the hash exists
     const targetTab = document.querySelector(`[data-tabs-items="${hash}"]`);
     if (targetTab) {
       activateTab(hash);
     } else {
-      // activate a default tab if hash doesn't match
       activateTab(tabs[0].getAttribute("data-tabs-items"));
     }
-  } else {
-    // activate the first tab by default if no hash
-    activateTab(tabs[0].getAttribute("data-tabs-items"));
   }
 };
 
