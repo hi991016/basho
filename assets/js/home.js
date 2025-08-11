@@ -116,5 +116,35 @@ const fvSwiper = new Swiper("[data-fv-swiper]", {
   },
 });
 
+// ===== intro =====
+
+const updateMarginsIntroPhoto = () => {
+  const pics = document.querySelectorAll(
+    ".intro_photo > [class*='intro_photo_pic']"
+  );
+  const viewportHeight = window.innerHeight;
+
+  pics.forEach((pic) => {
+    const style = getComputedStyle(pic);
+    const topValue = style.top;
+    let topPx = 0;
+
+    if (topValue.includes("%")) {
+      topPx = viewportHeight * (parseFloat(topValue) / 100);
+    } else {
+      topPx = parseFloat(topValue);
+    }
+
+    const picHeight = pic.offsetHeight;
+    const bottom = isMobile.matches ? 200 : 100;
+    let mb = viewportHeight - picHeight - topPx - bottom;
+
+    if (mb < 0) mb = 0;
+    pic.style.marginBottom = `${mb}px`;
+  });
+};
+updateMarginsIntroPhoto();
+window.addEventListener("resize", updateMarginsIntroPhoto);
+
 // ### ===== DOMCONTENTLOADED ===== ###
 window.addEventListener("DOMContentLoaded", homepage);

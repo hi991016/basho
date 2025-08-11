@@ -216,19 +216,22 @@
         padding: 0 17px 0 10px;
 
         &_pic1 {
-          top: calc(var(--vh) * 26);
+          top: 26%;
+          // top: calc(var(--vh) * 26);
           width: 46.377vw;
           margin-bottom: 25px;
         }
 
         &_pic2 {
-          top: calc(var(--vh) * 36);
+          top: 36%;
+          // top: calc(var(--vh) * 36);
           width: 35.024vw;
           margin-bottom: 50px;
         }
 
         &_pic3 {
-          top: calc(var(--vh) * 62);
+          top: 52%;
+          // top: calc(var(--vh) * 52);
           width: 25.362vw;
         }
       }
