@@ -118,11 +118,11 @@ const fvSwiper = new Swiper("[data-fv-swiper]", {
 
 // ===== intro =====
 
+let initialVH = window.innerHeight;
 const updateMarginsIntroPhoto = () => {
   const pics = document.querySelectorAll(
     ".intro_photo > [class*='intro_photo_pic']"
   );
-  const viewportHeight = window.innerHeight;
 
   pics.forEach((pic) => {
     const style = getComputedStyle(pic);
@@ -130,21 +130,27 @@ const updateMarginsIntroPhoto = () => {
     let topPx = 0;
 
     if (topValue.includes("%")) {
-      topPx = viewportHeight * (parseFloat(topValue) / 100);
+      topPx = initialVH * (parseFloat(topValue) / 100);
     } else {
       topPx = parseFloat(topValue);
     }
 
     const picHeight = pic.offsetHeight;
     const bottom = isMobile.matches ? 200 : 100;
-    let mb = viewportHeight - picHeight - topPx - bottom;
+    let mb = initialVH - picHeight - topPx - bottom;
 
     if (mb < 0) mb = 0;
     pic.style.marginBottom = `${mb}px`;
   });
 };
 updateMarginsIntroPhoto();
-window.addEventListener("resize", updateMarginsIntroPhoto);
+window.addEventListener("resize", () => {
+  // only update initialVH when actually rotating the screen
+  if (Math.abs(window.innerHeight - initialVH) > 100) {
+    initialVH = window.innerHeight;
+  }
+  updateMarginsIntroPhoto();
+});
 
 // ### ===== DOMCONTENTLOADED ===== ###
 window.addEventListener("DOMContentLoaded", homepage);
