@@ -267,31 +267,53 @@ const initTabs = () => {
   const panels = document.querySelectorAll("[data-tabs-panels]");
   if (!tabs.length || !panels.length) return;
 
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const targetId = tab.getAttribute("data-tabs-items");
+  // function to activate a tab and panel by ID
+  const activateTab = (targetId) => {
+    // remove active classes
+    tabs.forEach((t) => t.classList.remove("--active"));
+    panels.forEach((c) => c.classList.remove("--active"));
+
+    // add active classes to the matching tab and panel
+    document
+      .querySelectorAll(`[data-tabs-items="${targetId}"]`)
+      .forEach((matchedTab) => matchedTab.classList.add("--active"));
+    const content = document.querySelector(`[data-tabs-panels="${targetId}"]`);
+    if (content) {
+      content.classList.add("--active");
+      // scroll to the content wrapper
       const contentWrapper = document.querySelector("[data-tabs]");
       contentWrapper?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
+    }
+  };
+
+  // handle tab clicks
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const targetId = tab.getAttribute("data-tabs-items");
       window.lenis.stop();
-
-      // remove active classes
-      tabs.forEach((t) => t.classList.remove("--active"));
-      panels.forEach((c) => c.classList.remove("--active"));
-
-      // add active to clicked tab and corresponding content
+      activateTab(targetId);
       window.lenis.start();
-      document
-        .querySelectorAll(`[data-tabs-items="${targetId}"]`)
-        .forEach((matchedTab) => matchedTab.classList.add("--active"));
-      const content = document.querySelector(
-        `[data-tabs-panels="${targetId}"]`
-      );
-      if (content) content.classList.add("--active");
     });
   });
+
+  // check URL hash on page load
+  const hash = window.location.hash.replace("#", "");
+  if (hash) {
+    // check if a tab with the hash exists
+    const targetTab = document.querySelector(`[data-tabs-items="${hash}"]`);
+    if (targetTab) {
+      activateTab(hash);
+    } else {
+      // activate a default tab if hash doesn't match
+      activateTab(tabs[0].getAttribute("data-tabs-items"));
+    }
+  } else {
+    // activate the first tab by default if no hash
+    activateTab(tabs[0].getAttribute("data-tabs-items"));
+  }
 };
 
 // ===== accordion ======
