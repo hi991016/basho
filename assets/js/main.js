@@ -466,6 +466,17 @@ const setActiveBullet = (swiper, realSlidesCount) => {
 
 initProductSwiper();
 
+// ===== contact form =====
+const [btnClear, formFields] = [
+  document.querySelector("[data-form-clear]"),
+  document.querySelectorAll("[data-form] input, [data-form] textarea"),
+];
+btnClear?.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (!formFields) return;
+  formFields.forEach((element) => (element.value = ""));
+});
+
 // ### ===== DOMCONTENTLOADED ===== ###
 window.addEventListener("pageshow", () => {
   document.body.classList.remove("fadeout");
