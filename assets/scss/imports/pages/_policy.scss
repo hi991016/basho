@@ -5,5 +5,74 @@
 .policypage {
   // ===== policy =====
   .policy {
+    &_nav {
+      display: flex;
+      gap: 45px;
+
+      li {
+        font-size: 3rem;
+        line-height: 1.1;
+        opacity: 0.3;
+        cursor: pointer;
+        transition: opacity 0.2s ease-in;
+
+        &.--active {
+          opacity: 1;
+        }
+      }
+    }
+
+    &_tabs {
+      margin-top: 80px;
+    }
+
+    &_content {
+      margin-top: 60px;
+
+      &:first-child {
+        margin-top: initial;
+      }
+
+      h3 {
+        font-size: 1.9rem;
+        font-weight: 400;
+        line-height: 1.1;
+      }
+
+      &_desc {
+        margin-top: 45px;
+        font-family: var(--tn-fonts);
+        font-size: 2.1rem;
+        font-weight: 400;
+        line-height: 1.41;
+      }
+    }
+
+    @include maxW {
+      &_nav {
+        gap: 20px;
+
+        li {
+          font-size: 2.2rem;
+        }
+      }
+
+      &_tabs {
+        margin-top: 60px;
+      }
+
+      &_content {
+        margin-top: 40px;
+
+        h3 {
+          font-size: 1.6rem;
+        }
+
+        &_desc {
+          margin-top: 30px;
+          font-size: 1.8rem;
+        }
+      }
+    }
   }
 }
