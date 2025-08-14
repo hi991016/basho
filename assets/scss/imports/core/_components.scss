@@ -204,6 +204,7 @@
   background: transparent;
   border: 1px solid var(--black-cl);
   font-size: 1.8rem;
+  line-height: 0.9;
   color: var(--black-cl);
   transition: all 0.2s ease-in;
 
@@ -211,6 +212,11 @@
     opacity: 1;
     background: var(--black-cl);
     color: var(--white-cl);
+  }
+
+  &.--active {
+    background: var(--black-cl) !important;
+    color: var(--white-cl) !important;
   }
 
   &.--fs16 {
