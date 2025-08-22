@@ -113,6 +113,7 @@ h4,
 h5,
 h6 {
   font-weight: bold;
+  color: inherit;
 }
 
 table,
@@ -135,14 +136,17 @@ q {
 
 :focus {
   outline: 0;
+  box-shadow: none;
 }
 
 *:focus-visible {
   outline: -webkit-focus-ring-color auto 1px;
+  box-shadow: none;
 }
 
 a:focus:not(:link:active) {
   outline: -webkit-focus-ring-color auto 1px;
+  box-shadow: none;
 }
 
 ins {
@@ -218,3 +222,7 @@ img {
   object-fit: cover;
   max-width: 100%;
 }
+
+// div:empty {
+//   display: initial;
+// }

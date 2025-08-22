@@ -80,7 +80,7 @@ const handleBashoLogo = () => {
     document.querySelector("[data-offset-top]"),
   ];
   const scrollPosition = window.scrollY;
-  const hSize = ost.getBoundingClientRect().top + scrollPosition;
+  const hSize = ost?.getBoundingClientRect().top + scrollPosition;
 
   bashoLogo.classList.toggle(
     "--white",
