@@ -1,3 +1,4 @@
+/* theme-globals.js */
 "use strict";
 
 // ===== globals =====
@@ -76,8 +77,10 @@ document.addEventListener("click", (evt) => {
 
   evt.preventDefault();
   const url = link.getAttribute("href");
-
+  const currentUrl = window.location.pathname + window.location.search;
+  
   if (url && url !== "") {
+    const urlOnly = url.split("#")[0];
     const idx = url.indexOf("#");
     const hash = idx !== -1 ? url.substring(idx) : "";
 
@@ -96,10 +99,12 @@ document.addEventListener("click", (evt) => {
       }
     }
 
-    document.body.classList.add("fadeout");
-    setTimeout(function () {
-      window.location = url;
-    }, 500);
+    if (currentUrl !== urlOnly) {
+      document.body.classList.add("fadeout");
+      setTimeout(function () {
+        window.location = url;
+      }, 500);
+    }
   }
 
   return false;
