@@ -309,8 +309,6 @@ const initTabs = () => {
     const targetTab = document.querySelector(`[data-tabs-items="${hash}"]`);
     if (targetTab) {
       activateTab(hash);
-    } else {
-      activateTab(tabs[0].getAttribute("data-tabs-items"));
     }
   }
 };
