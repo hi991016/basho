@@ -11,6 +11,14 @@
   }
 }
 
+.u-container {
+  padding-top: 210px;
+
+  @include maxW {
+    padding-top: 150px;
+  }
+}
+
 /* --------------------------------- picture -------------------------------- */
 
 .c-picture {
