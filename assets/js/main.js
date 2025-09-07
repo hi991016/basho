@@ -78,7 +78,7 @@ document.addEventListener("click", (evt) => {
   evt.preventDefault();
   const url = link.getAttribute("href");
   const currentUrl = window.location.pathname + window.location.search;
-  
+
   if (url && url !== "") {
     const urlOnly = url.split("#")[0];
     const idx = url.indexOf("#");
@@ -244,6 +244,13 @@ const initCart = () => {
   toggleCarts.forEach((toggle) => {
     toggle.addEventListener("click", () => {
       const shouldBeActive = !carts.classList.contains("--show");
+      // triggeredBy open drawer
+      const cartDrawer = document.querySelector("cart-drawer");
+      if (shouldBeActive) {
+        cartDrawer.open(toggle);
+      } else {
+        cartDrawer.close();
+      }
       carts.classList.toggle("--show", shouldBeActive);
       if (menus && menus.classList.contains("--show")) {
         resetMenu();
