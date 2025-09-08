@@ -32,7 +32,7 @@ const init = () => {
   // # init product feature swiper
   initProdfeatSwipers();
   // # lazy load
-  const ll = new LazyLoad({
+  window.lazyLoadInstance = new LazyLoad({
     threshold: 100,
     elements_selector: ".lazy",
   });
