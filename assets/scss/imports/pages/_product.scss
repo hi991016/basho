@@ -78,8 +78,10 @@
       &_variant,
       &_quantity,
       &_add {
-        max-width: 250px;
         height: 41px;
+        max-width: 250px;
+        min-width: auto;
+        min-height: auto;
         border: 1px solid var(--black-cl);
         border-radius: 80px;
         display: flex;
@@ -87,6 +89,16 @@
         justify-content: center;
         gap: 20px;
         font-size: 1.6rem;
+        letter-spacing: 0;
+
+        &:before,
+        &::after {
+          content: unset;
+        }
+
+        &.loading {
+          color: transparent !important;
+        }
 
         &.--black {
           background: var(--black-cl);
