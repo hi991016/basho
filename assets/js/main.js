@@ -413,63 +413,69 @@ const initProdfeatSwipers = () => {
 };
 
 // ===== products ======
-const initProductSwiper = (selector = "[data-productpage-swiper]") => {
-  const container = document.querySelector(selector);
-  if (!container) return;
+const initProductSwipers = (selector = "[data-productpage-swiper]") => {
+  const containers = document.querySelectorAll(selector);
+  if (!containers.length) return;
 
-  const wrapper = container.querySelector(".swiper-wrapper");
-  const slides = wrapper.querySelectorAll(".swiper-slide");
+  const swipers = [];
 
-  // if 2 slides, clone to have enough
-  if (slides.length === 2) {
-    slides.forEach((slide) => {
-      const clone = slide.cloneNode(true);
-      const source = clone.querySelector("source");
-      if (source && source.dataset.srcset) {
-        source.srcset = source.dataset.srcset;
-      }
-      wrapper.appendChild(clone);
+  containers.forEach((container) => {
+    const wrapper = container.querySelector(".swiper-wrapper");
+    const slides = wrapper.querySelectorAll(".swiper-slide");
+
+    // if 2 slides, clone to have enough
+    if (slides.length === 2) {
+      slides.forEach((slide) => {
+        const clone = slide.cloneNode(true);
+        const source = clone.querySelector("source");
+        if (source && source.dataset.srcset) {
+          source.srcset = source.dataset.srcset;
+        }
+        wrapper.appendChild(clone);
+      });
+    }
+
+    // Init Swiper
+    const swiper = new Swiper(container, {
+      loop: true,
+      speed: 700,
+      slidesPerView: 1,
+      allowTouchMove: true,
+      navigation: {
+        nextEl: container.querySelector(".swiper-button-next"),
+        prevEl: container.querySelector(".swiper-button-prev"),
+      },
+      pagination: {
+        el: container.querySelector(".swiper-pagination"),
+        clickable: true,
+        renderBullet: function (index, className) {
+          if (index >= slides.length) return "";
+          return `<span class="${className}">${index + 1}</span>`;
+        },
+      },
+      breakpoints: {
+        1025: {
+          slidesPerView: "auto",
+          allowTouchMove: false,
+        },
+      },
+      on: {
+        init: (swiper) => {
+          updatePaginationWidth(swiper);
+        },
+        resize: (swiper) => {
+          updatePaginationWidth(swiper);
+        },
+        slideChange: (swiper) => {
+          setActiveBullet(swiper, slides.length);
+        },
+      },
     });
-  }
 
-  // Init Swiper
-  const swiper = new Swiper(selector, {
-    loop: true,
-    speed: 700,
-    slidesPerView: 1,
-    allowTouchMove: true,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      renderBullet: function (index, className) {
-        if (index >= slides.length) return ""; // bỏ bullet dư
-        return `<span class="${className}">${index + 1}</span>`;
-      },
-    },
-    breakpoints: {
-      1025: {
-        slidesPerView: "auto",
-        allowTouchMove: false,
-      },
-    },
-    on: {
-      init: (swiper) => {
-        updatePaginationWidth(swiper);
-      },
-      resize: (swiper) => {
-        updatePaginationWidth(swiper);
-      },
-      slideChange: (swiper) => {
-        setActiveBullet(swiper, slides.length);
-      },
-    },
+    swipers.push(swiper);
   });
 
-  return swiper;
+  return swipers; // return Swiper instances
 };
 
 const updatePaginationWidth = (swiper) => {
@@ -490,7 +496,7 @@ const setActiveBullet = (swiper, realSlidesCount) => {
   });
 };
 
-initProductSwiper();
+initProductSwipers();
 
 const resizeProductSwiper = () => {
   if (!isMobile.matches) return;
@@ -504,6 +510,7 @@ const resizeProductSwiper = () => {
   const pos3 = vh - basho.getBoundingClientRect().bottom + basho.clientHeight;
 
   const newHeight = vh - pos2 - pos3 * 2;
+  console.log("newHeight", newHeight, pos3 * 2);
 
   prodMain.style.height = `${Math.max(newHeight, 0)}px`;
   prodHeader.style.marginBottom = `${Math.max(pos3 * 2, 0)}px`;
