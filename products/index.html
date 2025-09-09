@@ -322,53 +322,7 @@
         <section class="product">
             <div class="product_container">
                 <div class="product_left">
-                    <div class="product_info pc-only">
-                        <div class="product_header">
-                            <p class="category">Confectionery</p>
-                            <h2>
-                                Confetti for adults <br />
-                                Otona no Konpeito
-                            </h2>
-                            <p class="price">$000.00</p>
-                        </div>
-                        <div class="product_meta">
-                            <div class="product_meta_variant">
-                                <select name="variant">
-                                    <option>Brown Rice</option>
-                                    <option>Caramel</option>
-                                </select>
-                            </div>
-                            <div class="product_meta_quantity">
-                                <button>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="1" viewBox="0 0 12 1">
-                                        <line id="Line_8" data-name="Line 8" x2="12" transform="translate(0 0.5)"
-                                            fill="none" stroke="#000" stroke-width="1"></line>
-                                    </svg>
-                                    <span class="visually-hidden">Decrement</span>
-                                </button>
-                                <input aria-label="Quantity" type="number" min="1" max="4" value="1" name="qty">
-                                <button>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
-                                        <g id="Group_523" data-name="Group 523" transform="translate(-114 -2375)">
-                                            <line id="Line_9" data-name="Line 9" x2="12" transform="translate(114 2381)"
-                                                fill="none" stroke="#000" stroke-width="1"></line>
-                                            <line id="Line_10" data-name="Line 10" x2="12"
-                                                transform="translate(120 2375) rotate(90)" fill="none" stroke="#000"
-                                                stroke-width="1"></line>
-                                        </g>
-                                    </svg>
-                                    <span class="visually-hidden">Increment</span>
-                                </button>
-                            </div>
-                            <button class="--black product_meta_add">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="product_right">
-                    <!-- // -->
-                    <div class="product_main">
+                    <div class="product_main sp-only" data-productpage-main>
                         <div class="product_swiper" data-productpage-swiper>
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
@@ -426,60 +380,116 @@
                                 <div class="swiper-pagination"></div>
                             </div>
                         </div>
-
-                        <div class="product_info sp-only">
-                            <div class="product_header">
-                                <div class="wrap">
-                                    <p class="category">Confectionery</p>
-                                    <p class="price">$000.00</p>
+                    </div>
+                    <div class="product_info">
+                        <div class="product_header" data-productpage-header>
+                            <p class="category">Confectionery</p>
+                            <h2>
+                                Confetti for adults <br />
+                                Otona no Konpeito
+                            </h2>
+                            <div class="price">
+                                <span>$000.00</span>
+                            </div>
+                        </div>
+                        <div class="product_meta">
+                            <div class="product_meta_variant">
+                                <select name="variant">
+                                    <option>Brown Rice</option>
+                                    <option>Caramel</option>
+                                </select>
+                            </div>
+                            <div class="product_meta_quantity">
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="1" viewBox="0 0 12 1">
+                                        <line id="Line_8" data-name="Line 8" x2="12" transform="translate(0 0.5)"
+                                            fill="none" stroke="#000" stroke-width="1"></line>
+                                    </svg>
+                                    <span class="visually-hidden">Decrement</span>
+                                </button>
+                                <input aria-label="Quantity" type="number" min="1" max="4" value="1" name="qty">
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                                        <g id="Group_523" data-name="Group 523" transform="translate(-114 -2375)">
+                                            <line id="Line_9" data-name="Line 9" x2="12" transform="translate(114 2381)"
+                                                fill="none" stroke="#000" stroke-width="1"></line>
+                                            <line id="Line_10" data-name="Line 10" x2="12"
+                                                transform="translate(120 2375) rotate(90)" fill="none" stroke="#000"
+                                                stroke-width="1"></line>
+                                        </g>
+                                    </svg>
+                                    <span class="visually-hidden">Increment</span>
+                                </button>
+                            </div>
+                            <button class="--black product_meta_add">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product_right">
+                    <!-- // -->
+                    <div class="product_main pc-only">
+                        <div class="product_swiper" data-productpage-swiper>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <picture class="c-picture">
+                                        <source media="(max-width: 1024px)"
+                                            data-srcset="/assets/images/collection/items_01.webp">
+                                        <img class="lazy" data-src="/assets/images/collection/items_01.webp"
+                                            alt="Product" width="675" height="675" loading="lazy" draggable="false">
+                                    </picture>
                                 </div>
-                                <h2>
-                                    Confetti for adults <br class="pc-only" />
-                                    Otona no Konpeito
-                                </h2>
+                                <div class="swiper-slide">
+                                    <picture class="c-picture">
+                                        <source media="(max-width: 1024px)"
+                                            data-srcset="/assets/images/collection/items_02.webp">
+                                        <img class="lazy" data-src="/assets/images/collection/items_02.webp"
+                                            alt="Product" width="675" height="675" loading="lazy" draggable="false">
+                                    </picture>
+                                </div>
+                            </div>
+                            <div class="product_swiper_tags"><span>Limited</span></div>
+                            <div class="product_swiper_nav">
+                                <div class="swiper-button-prev">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="36.414" height="16.829"
+                                        viewBox="0 0 36.414 16.829">
+                                        <g id="Group_492" data-name="Group 492" transform="translate(1.414 0.414)">
+                                            <line id="Line_2" data-name="Line 2" x2="35" transform="translate(0 8)"
+                                                fill="none" stroke="#000" stroke-width="2" />
+                                            <line id="Line_3" data-name="Line 3" x1="7" y2="7"
+                                                transform="translate(0 1)" fill="none" stroke="#000"
+                                                stroke-linecap="square" stroke-width="2" />
+                                            <line id="Line_4" data-name="Line 4" x1="7" y1="7"
+                                                transform="translate(0 8)" fill="none" stroke="#000"
+                                                stroke-linecap="square" stroke-width="2" />
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="swiper-button-next">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="36.414" height="16.829"
+                                        viewBox="0 0 36.414 16.829">
+                                        <g id="Group_491" data-name="Group 491" transform="translate(-1369 -3245.586)">
+                                            <line id="Line_2" data-name="Line 2" x1="35"
+                                                transform="translate(1369 3254)" fill="none" stroke="#000"
+                                                stroke-width="2" />
+                                            <line id="Line_3" data-name="Line 3" x2="7" y2="7"
+                                                transform="translate(1397 3247)" fill="none" stroke="#000"
+                                                stroke-linecap="square" stroke-width="2" />
+                                            <line id="Line_4" data-name="Line 4" y1="7" x2="7"
+                                                transform="translate(1397 3254)" fill="none" stroke="#000"
+                                                stroke-linecap="square" stroke-width="2" />
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="product_swiper_pagination" data-productpage-pagination>
+                                <div class="swiper-pagination"></div>
                             </div>
                         </div>
                     </div>
                     <!-- // -->
                     <div class="product_sub">
-                        <div class="product_info sp-only">
-                            <div class="product_meta">
-                                <div class="product_meta_variant">
-                                    <select name="variant">
-                                        <option>Brown Rice</option>
-                                        <option>Caramel</option>
-                                    </select>
-                                </div>
-                                <div class="product_meta_quantity">
-                                    <button>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="1"
-                                            viewBox="0 0 12 1">
-                                            <line id="Line_8" data-name="Line 8" x2="12" transform="translate(0 0.5)"
-                                                fill="none" stroke="#000" stroke-width="1"></line>
-                                        </svg>
-                                        <span class="visually-hidden">Decrement</span>
-                                    </button>
-                                    <input aria-label="Quantity" type="number" min="1" max="4" value="1" name="qty">
-                                    <button>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                            viewBox="0 0 12 12">
-                                            <g id="Group_523" data-name="Group 523" transform="translate(-114 -2375)">
-                                                <line id="Line_9" data-name="Line 9" x2="12"
-                                                    transform="translate(114 2381)" fill="none" stroke="#000"
-                                                    stroke-width="1"></line>
-                                                <line id="Line_10" data-name="Line 10" x2="12"
-                                                    transform="translate(120 2375) rotate(90)" fill="none" stroke="#000"
-                                                    stroke-width="1"></line>
-                                            </g>
-                                        </svg>
-                                        <span class="visually-hidden">Increment</span>
-                                    </button>
-                                </div>
-                                <button class="--black product_meta_add">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
                         <div class="product_detail">
                             <div class="product_detail_items">
                                 <h3>Details</h3>

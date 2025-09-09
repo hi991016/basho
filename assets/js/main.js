@@ -492,6 +492,25 @@ const setActiveBullet = (swiper, realSlidesCount) => {
 
 initProductSwiper();
 
+const resizeProductSwiper = () => {
+  if (!isMobile.matches) return;
+  const prodMain = document.querySelector("[data-productpage-main]"),
+    prodHeader = document.querySelector("[data-productpage-header]");
+
+  if (!prodHeader || !prodMain) return;
+
+  const vh = document.documentElement.clientHeight;
+  const pos2 = prodHeader.clientHeight;
+  const pos3 = vh - basho.getBoundingClientRect().bottom + basho.clientHeight;
+
+  const newHeight = vh - pos2 - pos3 * 2;
+
+  prodMain.style.height = `${Math.max(newHeight, 0)}px`;
+  prodHeader.style.marginBottom = `${Math.max(pos3 * 2, 0)}px`;
+};
+resizeProductSwiper();
+window.addEventListener("resize", resizeProductSwiper);
+
 // ===== contact form =====
 const [btnClear, formFields] = [
   document.querySelector("[data-form-clear]"),
