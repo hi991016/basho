@@ -420,8 +420,8 @@ const initProductSwiper = (selector = "[data-productpage-swiper]") => {
   const wrapper = container.querySelector(".swiper-wrapper");
   const slides = wrapper.querySelectorAll(".swiper-slide");
 
-  // if less than 3 slides, clone to have enough
-  if (slides.length < 3) {
+  // if 2 slides, clone to have enough
+  if (slides.length === 2) {
     slides.forEach((slide) => {
       const clone = slide.cloneNode(true);
       const source = clone.querySelector("source");
