@@ -100,6 +100,14 @@
       flex-direction: column;
       gap: 12px;
 
+      .product-form__input {
+        margin-bottom: 12px;
+
+        &:last-of-type {
+          margin-bottom: initial;
+        }
+      }
+
       &_variant,
       &_quantity,
       &_add {
@@ -114,6 +122,7 @@
         justify-content: center;
         gap: 20px;
         font-size: 1.6rem;
+        line-height: 1;
         letter-spacing: 0;
 
         &:before,
@@ -151,6 +160,8 @@
 
         button {
           position: relative;
+          width: auto;
+          margin: 0;
 
           &:after {
             content: "";
@@ -167,8 +178,20 @@
 
         input[type="number"] {
           flex-grow: 1;
+          width: 100%;
           text-align: center;
           pointer-events: none;
+          font-family: inherit;
+          font-size: inherit;
+          font-weight: inherit;
+          color: var(--black-cl);
+          opacity: 1;
+
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
         }
       }
 
