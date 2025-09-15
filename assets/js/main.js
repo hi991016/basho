@@ -500,19 +500,32 @@ const setActiveBullet = (swiper, realSlidesCount) => {
 
 initProductSwipers();
 
+let cachedHeight = null;
+let cachedWidth = window.innerWidth;
+
 const resizeProductSwiper = () => {
-  if (!isMobile.matches) return;
+  if (cachedWidth === window.innerWidth && cachedHeight !== null) return;
+
   const prodMain = document.querySelector("[data-productpage-main]"),
     prodHeader = document.querySelector("[data-productpage-header]");
 
   if (!prodHeader || !prodMain) return;
 
+  if (!isMobile.matches) {
+    prodMain.style.height = "";
+    prodHeader.style.marginBottom = "";
+    cachedHeight = null;
+    cachedWidth = window.innerWidth;
+    return;
+  }
+
   const vh = document.documentElement.clientHeight;
   const pos2 = prodHeader.clientHeight;
   const pos3 = vh - basho.getBoundingClientRect().bottom + basho.clientHeight;
-
   const newHeight = vh - pos2 - pos3 * 1.5 + 1;
-  // console.log("newHeight", newHeight, pos2, pos3 * 1.5, vh);
+
+  cachedHeight = newHeight;
+  cachedWidth = window.innerWidth;
 
   prodMain.style.height = `${Math.max(newHeight, 0)}px`;
   prodHeader.style.marginBottom = `${Math.max(pos3 * 2, 0)}px`;
@@ -530,6 +543,25 @@ btnClear?.addEventListener("click", (e) => {
   if (!formFields) return;
   formFields.forEach((element) => (element.value = ""));
 });
+
+const initCustomCursor = () => {
+  const cursorPrev = document.querySelector("[data-cursor-prev]");
+  const cursorNext = document.querySelector("[data-cursor-next]");
+
+  if (!cursorPrev || !cursorNext) return;
+
+  document.addEventListener("mousemove", (e) => {
+    cursorPrev.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    cursorNext.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+
+    const isNext = e.target.closest(".swiper-button-next");
+    const isPrev = e.target.closest(".swiper-button-prev");
+
+    cursorNext.classList.toggle("active", !!isNext);
+    cursorPrev.classList.toggle("active", !!isPrev);
+  });
+};
+initCustomCursor();
 
 // ### ===== DOMCONTENTLOADED ===== ###
 window.addEventListener("pageshow", () => {
