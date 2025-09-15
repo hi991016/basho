@@ -24,7 +24,7 @@
         bottom: auto;
         left: auto;
         display: flex;
-        gap: 20px;
+        gap: 15px;
         width: auto;
 
         .swiper-pagination-bullet {
@@ -60,7 +60,7 @@
       position: absolute;
       top: 45%;
       display: grid;
-      grid-template-columns: 14.599% 1fr;
+      grid-template-columns: 18% 1fr;
       align-items: baseline;
       width: 90%;
       gap: 13px;
@@ -298,12 +298,12 @@
       &_feature {
         display: flex;
         flex-direction: column-reverse;
-        gap: 25px;
+        gap: 20px;
 
         &_r {
           display: flex;
           flex-direction: column;
-          gap: 25px;
+          gap: 18px;
           width: 100%;
           padding-left: var(--paddsp);
 

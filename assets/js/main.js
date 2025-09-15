@@ -244,18 +244,20 @@ const initCart = () => {
   toggleCarts.forEach((toggle) => {
     toggle.addEventListener("click", () => {
       const shouldBeActive = !carts.classList.contains("--show");
-      // triggeredBy open drawer
-      const cartDrawer = document.querySelector("cart-drawer");
-      if (shouldBeActive) {
-        cartDrawer.open(toggle);
-      } else {
-        cartDrawer.close();
-      }
       carts.classList.toggle("--show", shouldBeActive);
       if (menus && menus.classList.contains("--show")) {
         resetMenu();
       }
       detectScroll(shouldBeActive);
+
+      // triggeredBy open drawer
+      const cartDrawer = document.querySelector("cart-drawer");
+      if (!cartDrawer) return;
+      if (shouldBeActive) {
+        cartDrawer.open(toggle);
+      } else {
+        cartDrawer.close();
+      }
     });
   });
 };

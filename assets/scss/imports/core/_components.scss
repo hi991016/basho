@@ -152,8 +152,7 @@
 
     &_tabs {
       width: 100%;
-      justify-content: space-between;
-      gap: 5px;
+      gap: 15px;
     }
 
     p {
@@ -161,7 +160,7 @@
     }
 
     h2 {
-      font-size: min(8.696vw, 3.6rem);
+      font-size: min(7.246vw, 3rem);
     }
   }
 }
@@ -363,16 +362,16 @@
           font-size: 4.8rem;
           font-weight: 400;
           letter-spacing: -0.5px;
-          line-height: 1.1;
+          line-height: 1;
 
           width: fit-content;
           display: flex;
           align-items: center;
           gap: 25px;
+          height: 54px;
 
           svg {
             opacity: 0;
-            transition: opacity 0.2s ease-in;
           }
 
           div.thumb {
@@ -401,7 +400,8 @@
             &:hover {
               opacity: 1;
               font-family: var(--tn-fonts);
-              font-size: 5.1rem;
+              font-size: 5.3rem;
+              padding-top: 6px;
 
               svg {
                 opacity: 1;
@@ -438,6 +438,7 @@
         li {
           a {
             font-size: min(7.246vw, 3rem);
+            height: 28px;
 
             svg,
             div.thumb {
@@ -581,7 +582,7 @@
 
   @include maxW {
     &_swiper {
-      margin: 25px calc(0px - var(--paddsp)) 0;
+      margin: 15px calc(0px - var(--paddsp)) 0;
       padding: 0 var(--paddsp);
     }
   }
