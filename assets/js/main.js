@@ -457,7 +457,7 @@ const initProductSwipers = (selector = "[data-productpage-swiper]") => {
       },
       breakpoints: {
         1025: {
-          slidesPerView: "auto",
+          // slidesPerView: "auto",
           allowTouchMove: false,
         },
       },
@@ -511,8 +511,8 @@ const resizeProductSwiper = () => {
   const pos2 = prodHeader.clientHeight;
   const pos3 = vh - basho.getBoundingClientRect().bottom + basho.clientHeight;
 
-  const newHeight = vh - pos2 - pos3 * 2;
-  console.log("newHeight", newHeight, pos3 * 2);
+  const newHeight = vh - pos2 - pos3 * 1.5 + 1;
+  // console.log("newHeight", newHeight, pos2, pos3 * 1.5, vh);
 
   prodMain.style.height = `${Math.max(newHeight, 0)}px`;
   prodHeader.style.marginBottom = `${Math.max(pos3 * 2, 0)}px`;

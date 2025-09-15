@@ -314,6 +314,9 @@
 
     <!-- @main -->
     <main class="productpage" id="productpage">
+        <!-- cursor// -->
+        <!-- //cursor -->
+
         <!-- product// -->
         <section class="product">
             <div class="product_container">
@@ -378,22 +381,38 @@
                     </div>
                     <div class="product_info">
                         <div class="product_header" data-productpage-header>
-                            <p class="category">Confectionery</p>
+                            <p class="product_category">Confectionery</p>
                             <h2>
                                 Confetti for adults <br />
                                 Otona no Konpeito
                             </h2>
-                            <div class="price">
-                                <span>$000.00</span>
+                            <div class="product_price">
+                                <div class="price">
+                                    <div class="price__container">
+                                        <span class="price-item price-item--regular">$000.00</span>
+                                        <span class="price-item">$000.00</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="product_meta">
+                            <ul class="product_meta_options">
+                                <li>
+                                    <input type="radio" id="oneoff" name="purchase" value="one-off" checked>
+                                    <label for="oneoff">One-off purchase</label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="subscription" name="purchase" value="subscription">
+                                    <label for="subscription">Subscription / Delivery every month</label>
+                                </li>
+                            </ul>
                             <div class="product_meta_variant">
                                 <select name="variant">
                                     <option>Brown Rice</option>
                                     <option>Caramel</option>
                                 </select>
                             </div>
+                            <!--
                             <div class="product_meta_quantity">
                                 <button>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="1" viewBox="0 0 12 1">
@@ -416,7 +435,8 @@
                                     <span class="visually-hidden">Increment</span>
                                 </button>
                             </div>
-                            <button class="--black product_meta_add">
+                            -->
+                            <button type="submit" data-submit-product class="--black product_meta_add">
                                 Add to Cart
                             </button>
                         </div>
@@ -476,9 +496,6 @@
                                         </g>
                                     </svg>
                                 </div>
-                            </div>
-                            <div class="product_swiper_pagination" data-productpage-pagination>
-                                <div class="swiper-pagination"></div>
                             </div>
                         </div>
                     </div>
@@ -843,6 +860,30 @@
     <!-- @script -->
     <script src="/assets/js/libs.js"></script>
     <script src="/assets/js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const radios = document.querySelectorAll('input[name="purchase"]'),
+                submitBtn = document.querySelector("[data-submit-product]"),
+                regularPrice = document.querySelector(".price-item--regular");
+
+            const updateUI = function () {
+                const selected = document.querySelector('input[name="purchase"]:checked');
+                if (!selected) return;
+
+                if (selected.value === "one-off") {
+                    submitBtn.textContent = "Add to Cart";
+                    if (regularPrice) regularPrice.style.display = "none";
+                } else if (selected.value === "subscription") {
+                    submitBtn.textContent = "Subscribe";
+                    if (regularPrice) regularPrice.style.display = "block";
+                }
+            }
+            updateUI();
+            radios.forEach(radio => {
+                radio.addEventListener("change", updateUI);
+            });
+        });
+    </script>
 </body>
 
 </html>

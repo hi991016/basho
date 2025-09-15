@@ -40,14 +40,6 @@
         line-height: 1.12;
       }
 
-      p.category,
-      div.price {
-        font-size: 1.9rem;
-        line-height: 1.1;
-        color: var(--black-cl);
-        letter-spacing: 0;
-      }
-
       @include maxW {
         padding-top: 30px;
         margin-bottom: 75px;
@@ -64,33 +56,52 @@
             display: none;
           }
         }
+      }
+    }
 
-        p.category,
-        div.price {
-          font-size: 1.6rem;
-        }
+    &_category,
+    &_price span.price-item {
+      font-size: 1.9rem;
+      line-height: 1.1;
+      color: var(--black-cl);
+      letter-spacing: 0;
 
-        div.price {
-          text-align: right;
-        }
+      @include maxW {
+        font-size: 1.6rem;
       }
     }
 
     &_price {
-      .price__container {
-        margin: 0;
-      }
-
-      div.price {
+      .price {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        margin: 0;
+      }
+
+      .price-item--regular {
+        opacity: 0.5;
+        text-decoration: line-through;
+        color: inherit;
+        font-size: inherit;
+      }
+
+      .price__container {
+        display: flex;
+        gap: 15px;
+        margin: 0;
       }
 
       .badge {
         max-width: 250px;
         margin-bottom: 0 !important;
         background: var(--black-cl);
+      }
+
+      @include maxW {
+        .price__container {
+          justify-content: flex-end;
+        }
       }
     }
 
@@ -105,6 +116,88 @@
 
         &:last-of-type {
           margin-bottom: initial;
+        }
+      }
+
+      &_options {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 23px;
+
+        input[type="radio"] {
+          &:checked,
+          &:not(:checked) {
+            position: absolute;
+            left: -9999px;
+          }
+
+          &:checked + label,
+          &:not(:checked) + label {
+            font-size: 1.6rem;
+            line-height: 1.1;
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            display: inline-block;
+          }
+
+          &:checked + label::before,
+          &:not(:checked) + label::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #ccc;
+            border-radius: 100%;
+            background: transparent;
+          }
+
+          &:checked + label::after,
+          &:not(:checked) + label::after {
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: var(--black-cl);
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            border-radius: 100%;
+            transition: all 0.2s ease;
+          }
+
+          &:not(:checked) + label::after {
+            opacity: 0;
+            transform: scale(0);
+          }
+
+          &:checked + label::after {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @include maxW {
+          margin-bottom: 18px;
+
+          input[type="radio"] {
+            &:checked + label,
+            &:not(:checked) + label {
+              font-size: 1.4rem;
+            }
+
+            &:checked + label::before,
+            &:not(:checked) + label::before {
+              top: -2px;
+            }
+
+            &:checked + label::after,
+            &:not(:checked) + label::after {
+              top: 3px;
+            }
+          }
         }
       }
 
@@ -231,7 +324,6 @@
       height: 100%;
       overflow: hidden;
       position: relative;
-      padding: 50px 0 87px;
 
       &_tags {
         position: absolute;
