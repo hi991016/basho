@@ -130,14 +130,13 @@
         opacity: 1;
         transition: opacity 0.3s ease-in-out;
 
-        &:first-child {
+        &:not([data-menu-accordion]) {
           position: relative;
           z-index: 1;
         }
 
         &.--dimmed {
           opacity: 0.3;
-          pointer-events: none;
         }
       }
     }
@@ -149,6 +148,10 @@
         li {
           width: 100%;
           font-size: 3rem;
+
+          &.--dimmed {
+            pointer-events: none;
+          }
         }
       }
     }
