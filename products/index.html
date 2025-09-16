@@ -398,17 +398,46 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="product_meta">
-                            <ul class="product_meta_options">
-                                <li>
-                                    <input type="radio" id="oneoff" name="purchase" value="one-off" checked>
-                                    <label for="oneoff">One-off purchase</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="subscription" name="purchase" value="subscription">
-                                    <label for="subscription">Subscription / Delivery every month</label>
-                                </li>
-                            </ul>
+                            <div class="shopify-block">
+                                <div class="shopify_subscriptions_app_container">
+                                    <section class="shopify_subscriptions_app_block">
+                                        <fieldset class="shopify_subscriptions_fieldset">
+                                            <div
+                                                style="border-color:#000000; border-width: 0px; border-style: solid; background: #ffffff; border-radius: 0px; color: #000000;">
+                                                <div class="shopify_subscriptions_app_block_label shopify_subscriptions_purchase_option_wrapper"
+                                                    style="border-bottom:0px solid #000000;">
+                                                    <label>
+                                                        <input aria-label="One-off purchase" type="radio"
+                                                            name="purchaseOption_template--1"
+                                                            data-radio-type="one_off_purchase" d checked>
+                                                        One-off purchase
+                                                    </label>
+                                                </div>
+
+                                                <div class="shopify_subscriptions_app_block_label"
+                                                    style="border-bottom:0 solid #000000;">
+                                                    <div class="shopify_subscriptions_purchase_option_wrapper">
+                                                        <label>Subscribe</label>
+                                                    </div>
+                                                    <ul class="shopify_subscriptions_app_block_label_children">
+                                                        <li>
+                                                            <label>
+                                                                <input type="radio"
+                                                                    aria-label="Subscription / Delivery every month"
+                                                                    name="purchaseOption_template--1"
+                                                                    data-radio-type="selling_plan">
+                                                                Subscription / Delivery every month
+                                                            </label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </section>
+                                </div>
+                            </div>
                             <div class="product_meta_variant">
                                 <select name="variant">
                                     <option>Brown Rice</option>
@@ -844,20 +873,20 @@
     <script src="/assets/js/main.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const radios = document.querySelectorAll('input[name="purchase"]'),
+            const radios = document.querySelectorAll('.shopify_subscriptions_fieldset input[type="radio"]'),
                 submitBtn = document.querySelector("[data-submit-product]"),
                 regularPrice = document.querySelector(".price-item--regular");
 
             const updateUI = function () {
-                const selected = document.querySelector('input[name="purchase"]:checked');
+                const selected = document.querySelector('.shopify_subscriptions_fieldset input[type="radio"]:checked');
                 if (!selected) return;
 
-                if (selected.value === "one-off") {
+                if (selected.dataset.radioType === "one_off_purchase") {
                     submitBtn.textContent = "Add to Cart";
-                    if (regularPrice) regularPrice.style.display = "none";
-                } else if (selected.value === "subscription") {
+                    regularPrice.style.display = "none";
+                } else {
                     submitBtn.textContent = "Subscribe";
-                    if (regularPrice) regularPrice.style.display = "block";
+                    regularPrice.style.display = "block";
                 }
             }
             updateUI();

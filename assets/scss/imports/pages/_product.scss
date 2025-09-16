@@ -50,11 +50,77 @@
       transform: translateY(-50%);
       padding: 0 var(--padd);
 
+      .shopify_subscriptions_fieldset {
+        margin-bottom: 23px;
+        
+        & > div {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .shopify_subscriptions_app_block_label {
+          padding: 0 !important;
+          border: none !important;
+          background: transparent !important;
+          color: #000;
+
+          ul {
+            padding: 0 !important;
+          }
+
+          label {
+            font-size: 1.6rem;
+            line-height: 1.1;
+            cursor: pointer;
+          }
+
+          input[type="radio"] {
+            margin: 0 12px 0 0;
+            transform: translateY(2px);
+            width: 15px;
+            height: 15px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+
+            &:checked::before {
+              content: "";
+              position: absolute;
+              top: 3px;
+              left: 3px;
+              width: 7px;
+              height: 7px;
+              background: var(--black-cl);
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+
+      #shopify-buyer-consent,
+      .shopify_subscriptions_app_policy,
+      .shopify_subscriptions_app_block_label
+        .shopify_subscriptions_purchase_option_wrapper
+        > label {
+        display: none !important;
+      }
+
       @include maxW {
         position: initial;
         transform: none;
         padding: 0 var(--paddsp);
         width: 100%;
+        margin-bottom: 18px;
+
+        .shopify_subscriptions_fieldset {
+          .shopify_subscriptions_app_block_label {
+            label {
+              font-size: 1.4rem;
+            }
+          }
+        }
       }
     }
 
@@ -146,88 +212,6 @@
 
         &:last-of-type {
           margin-bottom: initial;
-        }
-      }
-
-      &_options {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 23px;
-
-        input[type="radio"] {
-          &:checked,
-          &:not(:checked) {
-            position: absolute;
-            left: -9999px;
-          }
-
-          &:checked + label,
-          &:not(:checked) + label {
-            font-size: 1.6rem;
-            line-height: 1.1;
-            position: relative;
-            padding-left: 30px;
-            cursor: pointer;
-            display: inline-block;
-          }
-
-          &:checked + label::before,
-          &:not(:checked) + label::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 15px;
-            height: 15px;
-            border: 1px solid #ccc;
-            border-radius: 100%;
-            background: transparent;
-          }
-
-          &:checked + label::after,
-          &:not(:checked) + label::after {
-            content: "";
-            width: 7px;
-            height: 7px;
-            background: var(--black-cl);
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            border-radius: 100%;
-            transition: all 0.2s ease;
-          }
-
-          &:not(:checked) + label::after {
-            opacity: 0;
-            transform: scale(0);
-          }
-
-          &:checked + label::after {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        @include maxW {
-          margin-bottom: 18px;
-
-          input[type="radio"] {
-            &:checked + label,
-            &:not(:checked) + label {
-              font-size: 1.4rem;
-            }
-
-            &:checked + label::before,
-            &:not(:checked) + label::before {
-              top: -2px;
-            }
-
-            &:checked + label::after,
-            &:not(:checked) + label::after {
-              top: 3px;
-            }
-          }
         }
       }
 
