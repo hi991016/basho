@@ -1,5 +1,7 @@
 // ===== init =====
 const homepage = () => {
+  ScrollTrigger.clearScrollMemory("manual");
+  ScrollTrigger.refresh();
   // # fix position
   fixPosition();
   // # init loading
@@ -150,6 +152,70 @@ window.addEventListener("resize", () => {
     initialVH = window.innerHeight;
   }
   updateMarginsIntroPhoto();
+});
+
+// ===== intro =====
+gsap.registerPlugin(ScrollTrigger);
+const handleIntroContent = () => {
+  const trigger = ".intro_container";
+
+  const steps = [
+    {
+      trigger: trigger,
+      start: "top+=300 center",
+      target: ".intro_content",
+    },
+    {
+      trigger: trigger,
+      start: "top+=500 center",
+      target: "[data-intro-thumb='step1']",
+    },
+    {
+      trigger: trigger,
+      start: "top+=800 center",
+      target: "[data-intro-thumb='step2']",
+    },
+  ];
+
+  steps.forEach(({ trigger, start, target }) => {
+    ScrollTrigger.create({
+      trigger,
+      start,
+      markers: false,
+      onEnter: () =>
+        gsap.to(target, { autoAlpha: 1, duration: 0.6, overwrite: "auto" }),
+      onLeaveBack: () =>
+        gsap.to(target, { autoAlpha: 0, duration: 0.6, overwrite: "auto" }),
+    });
+  });
+
+  ScrollTrigger.create({
+    trigger: "#pickup",
+    start: "top bottom",
+    markers: false,
+    onEnter: () => gsap.to(trigger, { autoAlpha: 0, duration: 0.6 }),
+    onLeaveBack: () => gsap.to(trigger, { autoAlpha: 1, duration: 0.6 }),
+  });
+};
+
+// Resize smooth
+let resizeTimeout;
+const optimizedResize = () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    requestAnimationFrame(handleIntroContent);
+  }, 200);
+};
+
+// Use ResizeObserver with root margin
+const resizeObserver = new ResizeObserver(optimizedResize);
+resizeObserver.observe(document.documentElement, {
+  box: "content-box",
+});
+
+// Init
+"load pageshow".split(" ").forEach((evt) => {
+  window.addEventListener(evt, handleIntroContent);
 });
 
 // ### ===== DOMCONTENTLOADED ===== ###
