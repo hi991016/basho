@@ -52,7 +52,7 @@
 
       .shopify_subscriptions_fieldset {
         margin-bottom: 23px;
-        
+
         & > div {
           display: flex;
           flex-direction: column;
@@ -70,6 +70,7 @@
           }
 
           label {
+            font-family: var(--main-fonts);
             font-size: 1.6rem;
             line-height: 1.1;
             cursor: pointer;
