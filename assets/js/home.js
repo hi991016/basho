@@ -156,6 +156,7 @@ window.addEventListener("resize", () => {
 
 // ===== intro =====
 gsap.registerPlugin(ScrollTrigger);
+
 const handleIntroContent = () => {
   const trigger = ".intro_container";
 
@@ -169,23 +170,30 @@ const handleIntroContent = () => {
       trigger: trigger,
       start: "top+=30% top",
       target: "[data-intro-thumb='step1']",
-    },
-    {
-      trigger: trigger,
-      start: "top+=50% top",
-      target: "[data-intro-thumb='step2']",
+      chained: ["[data-intro-thumb='step2']", "[data-intro-thumb='step3']"],
     },
   ];
 
-  steps.forEach(({ trigger, start, target }) => {
+  steps.forEach(({ trigger, start, target, chained }) => {
     ScrollTrigger.create({
       trigger,
       start,
-      markers: true,
-      onEnter: () =>
-        gsap.to(target, { autoAlpha: 1, duration: 0.6, overwrite: "auto" }),
-      onLeaveBack: () =>
-        gsap.to(target, { autoAlpha: 0, duration: 0.6, overwrite: "auto" }),
+      markers: false,
+      onEnter: () => {
+        gsap.to(target, { autoAlpha: 1, duration: 0.6, overwrite: "auto" });
+
+        if (chained) {
+          const tl = gsap.timeline();
+          tl.to(chained[0], { autoAlpha: 1, duration: 0.6 }, "+=1") // after 1s
+            .to(chained[1], { autoAlpha: 1, duration: 0.6 }, "+=0.3"); // after 0.3s
+        }
+      },
+      onLeaveBack: () => {
+        gsap.to(target, { autoAlpha: 0, duration: 0.6, overwrite: "auto" });
+        if (chained) {
+          gsap.to(chained, { autoAlpha: 0, duration: 0.3, overwrite: "auto" });
+        }
+      },
     });
   });
 
