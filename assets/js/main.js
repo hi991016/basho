@@ -444,8 +444,8 @@ const initProductSwipers = (selector = "[data-productpage-swiper]") => {
       slidesPerView: 1,
       allowTouchMove: true,
       navigation: {
-        nextEl: container.querySelector(".swiper-button-next"),
-        prevEl: container.querySelector(".swiper-button-prev"),
+        nextEl: container.querySelector(".swiper-button-next.controls"),
+        prevEl: container.querySelector(".swiper-button-prev.controls"),
       },
       pagination: {
         el: container.querySelector(".swiper-pagination"),
@@ -554,8 +554,8 @@ const initCustomCursor = () => {
     cursorPrev.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
     cursorNext.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
 
-    const isNext = e.target.closest(".swiper-button-next");
-    const isPrev = e.target.closest(".swiper-button-prev");
+    const isNext = e.target.closest(".swiper-button-next.controls");
+    const isPrev = e.target.closest(".swiper-button-prev.controls");
 
     cursorNext.classList.toggle("active", !!isNext);
     cursorPrev.classList.toggle("active", !!isPrev);
