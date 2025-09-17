@@ -481,12 +481,10 @@
     }
 
     &_sub {
-      width: 81.835%;
-      margin-left: auto;
+      width: 100%;
       padding-right: var(--padd);
 
       @include maxW {
-        width: 100%;
         padding: 0;
       }
     }

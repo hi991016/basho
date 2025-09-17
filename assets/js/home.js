@@ -162,17 +162,17 @@ const handleIntroContent = () => {
   const steps = [
     {
       trigger: trigger,
-      start: "top+=300 center",
+      start: "top top",
       target: ".intro_content",
     },
     {
       trigger: trigger,
-      start: "top+=500 center",
+      start: "top+=30% top",
       target: "[data-intro-thumb='step1']",
     },
     {
       trigger: trigger,
-      start: "top+=800 center",
+      start: "top+=50% top",
       target: "[data-intro-thumb='step2']",
     },
   ];
@@ -181,7 +181,7 @@ const handleIntroContent = () => {
     ScrollTrigger.create({
       trigger,
       start,
-      markers: false,
+      markers: true,
       onEnter: () =>
         gsap.to(target, { autoAlpha: 1, duration: 0.6, overwrite: "auto" }),
       onLeaveBack: () =>
