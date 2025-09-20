@@ -8,13 +8,6 @@ const homepage = () => {
   initLoading();
 };
 
-// ===== fix position mobile =====
-const fixPosition = () => {
-  const vh = document.documentElement.clientHeight;
-  document.documentElement.style.setProperty("--vh", `${vh * 0.01}px`);
-};
-window.addEventListener("resize", fixPosition);
-
 // ===== init loading =====
 const preventScroll = (e) => e.preventDefault();
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -119,42 +112,6 @@ const fvSwiper = new Swiper("[data-fv-swiper]", {
 });
 
 // ===== intro =====
-
-let initialVH = window.innerHeight;
-const updateMarginsIntroPhoto = () => {
-  const pics = document.querySelectorAll(
-    ".intro_photo > [class*='intro_photo_pic']"
-  );
-
-  pics.forEach((pic) => {
-    const style = getComputedStyle(pic);
-    const topValue = style.top;
-    let topPx = 0;
-
-    if (topValue.includes("%")) {
-      topPx = initialVH * (parseFloat(topValue) / 100);
-    } else {
-      topPx = parseFloat(topValue);
-    }
-
-    const picHeight = pic.offsetHeight;
-    const bottom = isMobile.matches ? 200 : 100;
-    let mb = initialVH - picHeight - topPx - bottom;
-
-    if (mb < 0) mb = 0;
-    pic.style.marginBottom = `${mb}px`;
-  });
-};
-updateMarginsIntroPhoto();
-window.addEventListener("resize", () => {
-  // only update initialVH when actually rotating the screen
-  if (Math.abs(window.innerHeight - initialVH) > 100) {
-    initialVH = window.innerHeight;
-  }
-  updateMarginsIntroPhoto();
-});
-
-// ===== intro =====
 gsap.registerPlugin(ScrollTrigger);
 
 const handleIntroContent = () => {
@@ -184,8 +141,8 @@ const handleIntroContent = () => {
 
         if (chained) {
           const tl = gsap.timeline();
-          tl.to(chained[0], { autoAlpha: 1, duration: 0.6 }, "+=1") // after 1s
-            .to(chained[1], { autoAlpha: 1, duration: 0.6 }, "+=0.3"); // after 0.3s
+          tl.to(chained[0], { autoAlpha: 1, duration: 0.6 }, "+=1.2") // after 1s
+            .to(chained[1], { autoAlpha: 1, duration: 0.6 }, "+=0.01"); // after 0.3s
         }
       },
       onLeaveBack: () => {
