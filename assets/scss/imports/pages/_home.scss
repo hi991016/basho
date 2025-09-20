@@ -6,7 +6,6 @@
   section {
     position: relative;
     z-index: 2;
-    background: var(--white-cl);
   }
 
   // ===== firstview =====
@@ -97,7 +96,7 @@
           top: auto;
           right: auto;
           bottom: 235px;
-          left: 18px;
+          left: 19px;
           gap: 12px;
 
           .swiper-pagination-bullet {
@@ -108,7 +107,7 @@
 
       &_content {
         top: auto;
-        bottom: 105px;
+        bottom: 110px;
         padding: 0 18px;
         width: 100%;
         grid-template-columns: 1fr;
@@ -146,7 +145,7 @@
 
     &_content {
       position: absolute;
-      top: 50%;
+      top: 48%;
       left: 50%;
       transform: translate(-50%, -50%);
 
@@ -218,6 +217,8 @@
       &_content {
         padding: 0 var(--paddsp);
         font-size: max(2.8rem, 6.763vw);
+        top: 49%;
+        letter-spacing: -0.85px;
 
         span {
           svg {
@@ -236,7 +237,7 @@
           &:nth-of-type(1) {
             position: absolute;
             top: calc(min(39.372vw, 163px) / 1.87);
-            right: calc(min(39.372vw, 163px) / 2.7);
+            right: calc(min(39.372vw, 163px) / 2.3);
             z-index: 1;
             width: min(39.372vw, 163px);
           }
@@ -244,7 +245,7 @@
           &:nth-of-type(2) {
             width: min(32.609vw, 135px);
             top: auto;
-            bottom: calc(min(32.609vw, 135px) + var(--paddsp));
+            bottom: calc(min(32.609vw, 135px) + 35px);
             left: var(--paddsp);
             transform: none;
           }
@@ -253,7 +254,7 @@
             width: min(26.57vw, 110px);
             bottom: min(26.57vw, 110px);
             left: auto;
-            right: var(--paddsp);
+            right: calc(var(--paddsp) - 2px);
             transform: none;
           }
         }
@@ -264,7 +265,7 @@
   // ===== intro =====
   .pickup {
     &_container {
-      padding-top: 150px;
+      padding-top: 300px;
       margin-top: 40px;
     }
 
@@ -303,7 +304,7 @@
 
     @include maxW {
       &_container {
-        padding-top: 60px;
+        padding-top: 200px;
         margin-top: 60px;
       }
 

@@ -134,6 +134,8 @@
         font-size: min(2.083vw, 3rem);
         font-weight: 400;
         line-height: 1.12;
+        letter-spacing: -0.75px;
+        margin-left: -1px;
       }
 
       @include maxW {
@@ -550,7 +552,7 @@
         padding: 0 var(--paddsp);
 
         h3 {
-          font-size: 1.6rem;
+          font-size: 1.7rem;
         }
 
         &_custom {
@@ -650,7 +652,7 @@
         margin-top: 8px;
 
         &_btn {
-          font-size: 1.6rem;
+          font-size: 1.7rem;
         }
 
         &_plus {
